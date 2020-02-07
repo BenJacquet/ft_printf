@@ -7,7 +7,7 @@ int            main(int ac, char **av)
 	char			c = 'a';
 	char			*s = "salut je suis ben";
 	int				x = -2554564;
-	int				X = -2554564;
+	int				X = -255456412;
 	unsigned		u = 154645468;
 
 //	printf("\n '%-5' : mon return = %d\n", ft_printf("\n%-5"));
