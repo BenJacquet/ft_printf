@@ -128,18 +128,24 @@ int ft_process(const char *format, va_list va_lst, s_struct *f)
 	while (*format)
 	{
 		if (*format != '%')
-			ft_char(*format++);
+			ft_char(*format++); // remplacer par remplissage du buffer;
+		// implementer affichage et reset du buffer si plein
 		else
+		{
 			format = ft_flag(format, va_lst, f);
+			// implementer conversion des arguments 
+			ft_fill()// implementer remplissage du buffer;
+		}
 	}
+	// implementer affichage du buffer et ajout de count += strlen(buffer)
 	return (count);
 }
 
 int ft_printf(const char *format, ...)
 {
-	va_list va_lst;
-	int count;
-	s_struct f;
+	va_list 	va_lst;
+	s_struct 	f;
+	int			count;
 
 	count = 0;
 	ft_initialize(&f);

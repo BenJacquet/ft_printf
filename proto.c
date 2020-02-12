@@ -141,29 +141,7 @@ static size_t _ntoa_format(out_fct_type out, char* buffer, size_t idx, size_t ma
     }
   }
 
-  // handle hash
-  if (flags & FLAGS_HASH) {
-    if (!(flags & FLAGS_PRECISION) && len && ((len == prec) || (len == width))) {
-      len--;
-      if (len && (base == 16U)) {
-        len--;
-      }
-    }
-    if ((base == 16U) && !(flags & FLAGS_UPPERCASE) && (len < PRINTF_NTOA_BUFFER_SIZE)) {
-      buf[len++] = 'x';
-    }
-    else if ((base == 16U) && (flags & FLAGS_UPPERCASE) && (len < PRINTF_NTOA_BUFFER_SIZE)) {
-      buf[len++] = 'X';
-    }
-    else if ((base == 2U) && (len < PRINTF_NTOA_BUFFER_SIZE)) {
-      buf[len++] = 'b';
-    }
-    if (len < PRINTF_NTOA_BUFFER_SIZE) {
-      buf[len++] = '0';
-    }
-  }
-
-  if (len < PRINTF_NTOA_BUFFER_SIZE) {
+   if (len < PRINTF_NTOA_BUFFER_SIZE) {
     if (negative) {
       buf[len++] = '-';
     }
@@ -177,31 +155,6 @@ static size_t _ntoa_format(out_fct_type out, char* buffer, size_t idx, size_t ma
 
   return _out_rev(out, buffer, idx, maxlen, buf, len, width, flags);
 }
-
-
-// internal itoa for 'long' type
-static size_t _ntoa_long(out_fct_type out, char* buffer, size_t idx, size_t maxlen, unsigned long value, bool negative, unsigned long base, unsigned int prec, unsigned int width, unsigned int flags)
-{
-  char buf[PRINTF_NTOA_BUFFER_SIZE];
-  size_t len = 0U;
-
-  // no hash for 0 values
-  if (!value) {
-    flags &= ~FLAGS_HASH;
-  }
-
-  // write if precision != 0 and value is != 0
-  if (!(flags & FLAGS_PRECISION) || value) {
-    do {
-      const char digit = (char)(value % base);
-      buf[len++] = digit < 10 ? '0' + digit : (flags & FLAGS_UPPERCASE ? 'A' : 'a') + digit - 10;
-      value /= base;
-    } while (value && (len < PRINTF_NTOA_BUFFER_SIZE));
-  }
-
-  return _ntoa_format(out, buffer, idx, maxlen, buf, len, negative, (unsigned int)base, prec, width, flags);
-}
-
 
   // test for negative
   bool negative = false;
@@ -218,62 +171,6 @@ static size_t _ntoa_long(out_fct_type out, char* buffer, size_t idx, size_t maxl
   while ((len < PRINTF_FTOA_BUFFER_SIZE) && (prec > 9U)) {
     buf[len++] = '0';
     prec--;
-  }
-
-  int whole = (int)value;
-  double tmp = (value - whole) * pow10[prec];
-  unsigned long frac = (unsigned long)tmp;
-  diff = tmp - frac;
-
-  if (diff > 0.5) {
-    ++frac;
-    // handle rollover, e.g. case 0.99 with prec 1 is 1.0
-    if (frac >= pow10[prec]) {
-      frac = 0;
-      ++whole;
-    }
-  }
-  else if (diff < 0.5) {
-  }
-  else if ((frac == 0U) || (frac & 1U)) {
-    // if halfway, round up if odd OR if last digit is 0
-    ++frac;
-  }
-
-  if (prec == 0U) {
-    diff = value - (double)whole;
-    if ((!(diff < 0.5) || (diff > 0.5)) && (whole & 1)) {
-      // exactly 0.5 and ODD, then round up
-      // 1.5 -> 2, but 2.5 -> 2
-      ++whole;
-    }
-  }
-  else {
-    unsigned int count = prec;
-    // now do fractional part, as an unsigned number
-    while (len < PRINTF_FTOA_BUFFER_SIZE) {
-      --count;
-      buf[len++] = (char)(48U + (frac % 10U));
-      if (!(frac /= 10U)) {
-        break;
-      }
-    }
-    // add extra 0s
-    while ((len < PRINTF_FTOA_BUFFER_SIZE) && (count-- > 0U)) {
-      buf[len++] = '0';
-    }
-    if (len < PRINTF_FTOA_BUFFER_SIZE) {
-      // add decimal
-      buf[len++] = '.';
-    }
-  }
-
-  // do whole part, number is reversed
-  while (len < PRINTF_FTOA_BUFFER_SIZE) {
-    buf[len++] = (char)(48 + (whole % 10));
-    if (!(whole /= 10)) {
-      break;
-    }
   }
 
   // pad leading zeros
@@ -372,24 +269,6 @@ static int _vsnprintf(out_fct_type out, char* buffer, const size_t maxlen, const
       }
     }
 
-#if defined(PRINTF_SUPPORT_PTRDIFF_T)
-      case 't' :
-        flags |= (sizeof(ptrdiff_t) == sizeof(long) ? FLAGS_LONG : FLAGS_LONG_LONG);
-        format++;
-        break;
-#endif
-      case 'j' :
-        flags |= (sizeof(intmax_t) == sizeof(long) ? FLAGS_LONG : FLAGS_LONG_LONG);
-        format++;
-        break;
-      case 'z' :
-        flags |= (sizeof(size_t) == sizeof(long) ? FLAGS_LONG : FLAGS_LONG_LONG);
-        format++;
-        break;
-      default :
-        break;
-    }
-
     // evaluate specifier
     switch (*format) {
       case 'd' :
@@ -466,7 +345,6 @@ static int _vsnprintf(out_fct_type out, char* buffer, const size_t maxlen, const
         break;
       }
 
-// PRINTF_SUPPORT_FLOAT
       case 'c' : {
         unsigned int l = 1U;
         // pre padding
