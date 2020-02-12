@@ -15,29 +15,30 @@
 # define FT_PRINTF_H
 # include <unistd.h>
 # include <stdlib.h>
+# include <stdint.h>
 # include <stdarg.h>
 # include <stdio.h>
 
 typedef struct			s_struct
 {
-	int		wid;
-	int		plus;
+	int		width;
 	int		wild;
 	int		left;
 	int		zero;
-	char	pad;
 	int		neg;
 	int		adress;
 	int		handle;
 	int		null;
 	int		prec;
-	int		first;
 }						s_struct;
 
 int				ft_strlen(char *str);
-int				ft_mini_atoi(const char *str);
+int				ft_atoi(const char *str);
+int				ft_isspace(int c);
 int				ft_isdigit(int c);
 int				ft_abs(int n);
+void			ft_bzero(void *s, size_t n);
+void			*ft_memset(void *b, int c, size_t len);
 char			*ft_strrev(char *str);
 int				ft_ilen(unsigned int n, int mode);
 int				ft_char(char c);

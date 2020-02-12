@@ -12,6 +12,14 @@
 
 #include "ft_printf.h"
 
+int		ft_isspace(int c)
+{
+	if ((c >= 9 && c <= 13) || c == 32)
+		return (1);
+	else
+		return (0);
+}
+
 int		ft_abs(int n)
 {
 	return (n < 0 ? (int64_t)-n : (int64_t)n);
@@ -25,6 +33,28 @@ int			ft_strlen(char *str)
 	while (str[len])
 		len++;
 	return (len);
+}
+
+void	*ft_memset(void *b, int c, size_t len)
+{
+	unsigned int	i;
+	unsigned char	uc;
+	unsigned char	*dst;
+
+	i = 0;
+	uc = c;
+	dst = b;
+	while (len--)
+		dst[i++] = uc;
+	return (b);
+}
+
+void	ft_bzero(void *s, size_t n)
+{
+	if (n == 0)
+		return ;
+	else
+		ft_memset(s, 0, n);
 }
 
 int		ft_isdigit(int c)
@@ -72,14 +102,20 @@ int			ft_ilen(unsigned int n, int mode)
 	return (len + 1);
 }
 
-int		ft_mini_atoi(const char *str)
+int		ft_atoi(const char *str)
 {
-	int64_t		res;
-	int			i;
+	int					i;
+	size_t				result;
+	int					sign;
 
-	res = 0;
 	i = 0;
-	while (str[i] >= '0' && str[i] <= '9' && str[i])
-		res = (res * 10) + (str[i++] - '0');
-	return (res);
+	result = 0;
+	sign = 1;
+	while (ft_isspace(str[i]))
+		i++;
+	if (str[i] == '-' || str[i] == '+')
+		sign = str[i++] == '-' ? -1 : 1;
+	while (str[i] >= '0' && str[i] <= '9')
+		result = (result * 10) + (str[i++] - 48);
+	return (result * sign);
 }

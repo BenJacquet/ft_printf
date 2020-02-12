@@ -6,11 +6,11 @@ int		ft_empty(s_struct *f)
 	int		i;
 
 	i = 0;
-	if (f->wid > 0)
+	if (f->width > 0)
 	{
-		while (i < f->wid)
+		while (i < f->width)
 		{
-			write(1, &f->pad, 1);
+//			write(1, &f->pad, 1);
 			i++;
 		}
 	}
@@ -25,7 +25,7 @@ int		ft_print2(char *s, s_struct *f, int len, int mode)
 
 	if (mode == 1 && f->prec < len && f->prec)
 		len = f->prec;
-	if (*s && mode == 1 && f->prec > 0 && f->wid == 0)
+	if (*s && mode == 1 && f->prec > 0 && f->width == 0)
 	{
 		write(1, s, len);
 		i += len;
@@ -36,11 +36,11 @@ int		ft_print2(char *s, s_struct *f, int len, int mode)
 		i += len;
 	}
 	else if (f->prec == -1)
-		f->wid = len;
-	while (f->wid > 0)
+		f->width = len;
+	while (f->width > 0)
 	{
-		i += ft_char(f->pad);
-		f->wid--;
+//		i += ft_char(f->pad);
+		f->width--;
 	}
 	return (i);
 }
@@ -57,30 +57,30 @@ int		ft_print(char *s, s_struct *f, int mode)
 	len = ft_strlen(s);
 	i = 0;
 	ft_adjust(f, mode, len);
-/*	printf("\nf->wid = %d", f->wid);
+/*	printf("\nf->width = %d", f->width);
 	printf("\nf->prec = %d", f->prec);
 	printf("\nf->space = %d", f->space);
 	printf("\nf->zero = %d", f->zero);
 	printf("\nf->null = %d", f->null);
 	printf("\nf->handle = %d", f->handle);*/
-	if (mode == 1 && (f->null == 1 || (f->handle == 1 && f->wid == 0 &&
+	if (mode == 1 && (f->null == 1 || (f->handle == 1 && f->width == 0 &&
 			f->prec == 0)))
 		return (0);
-	if (f->wid > 0)
+	if (f->width > 0)
 	{
-		if (len >= f->wid && mode == 1 && f->handle == 1)
+		if (len >= f->width && mode == 1 && f->handle == 1)
 		{
-			len = f->wid; //le bug se produit ici !!!
-			f->wid = 0;
+			len = f->width; //le bug se produit ici !!!
+			f->width = 0;
 		}
 		else
-			f->wid = (f->prec > 0 && mode == 1 ? len : f->wid - len);
+			f->width = (f->prec > 0 && mode == 1 ? len : f->width - len);
 	}
-	f->pad = (f->zero == 1 ? '0' : ' ');
-	while (f->left != 1 && f->wid > 0)
+//	f->pad = (f->zero == 1 ? '0' : ' ');
+	while (f->left != 1 && f->width > 0)
 	{
-		i += ft_char(f->pad);
-		f->wid--;
+//		i += ft_char(f->pad);
+		f->width--;
 	}
 	return (i + (ft_print2(s, f, len, mode)));
 }
@@ -96,14 +96,14 @@ int		ft_integer2(unsigned int n, char *s, s_struct *f)
 		*--s = (n % 10) + '0';
 		n /= 10;
 	}
-	while (f->prec > ft_strlen(s) && ft_strlen(s) < f->wid)
+	while (f->prec > ft_strlen(s) && ft_strlen(s) < f->width)
 		*--s = '0';
 	if (f->neg)
 	{
-		if (f->wid && f->zero)
+		if (f->width && f->zero)
 		{
 			i += ft_char('-');
-			f->wid--;
+			f->width--;
 		}
 		else
 			*--s = '-';
@@ -154,7 +154,7 @@ int		ft_hex2(uint64_t n, char *s, s_struct *f, int caps)
 		*--s = 'x';
 		*--s = '0';
 	}
-	while (f->prec > ft_strlen(s) && ft_strlen(s) < f->wid)
+	while (f->prec > ft_strlen(s) && ft_strlen(s) < f->width)
 		*--s = '0';
 	return (i + (ft_print(s, f, 0)) - f->adress);
 }
@@ -195,13 +195,13 @@ int		ft_printc(int c, s_struct *f, int mode)
 	s[0] = (char)c;
 	s[1] = '\0';
 
-	if (f->wid > 0 && c == 0)
+	if (f->width > 0 && c == 0)
 	{
 		if (f->left == 1)
-			return (f->wid);
-		f->wid = f->wid - 1;
+			return (f->width);
+		f->width = f->width - 1;
 	}
-	if (f->wid == 0)
+	if (f->width == 0)
 		return (ft_char(c));
 	else
 		return (c == 0 ? ft_print(s, f, 1) + 1 : ft_print(s, f, 1));
