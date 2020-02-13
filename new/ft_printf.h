@@ -21,27 +21,25 @@
 
 typedef struct			s_struct
 {
+	int		specifier;
 	int		width;
-	int		wild;
+	int		precision;
 	int		left;
 	int		zero;
-	int		neg;
-	int		adress;
-	int		handle;
-	int		null;
-	int		prec;
+	int		pointer;
 }						s_struct;
 
 int				ft_strlen(char *str);
 int				ft_atoi(const char *str);
 int				ft_isspace(int c);
 int				ft_isdigit(int c);
+const char 		*ft_specifier(const char *id, s_struct *f);
 int				ft_abs(int n);
 void			ft_bzero(void *s, size_t n);
 void			*ft_memset(void *b, int c, size_t len);
 char			*ft_strrev(char *str);
 int				ft_ilen(unsigned int n, int mode);
-int				ft_char(char c);
+int				ft_putchar(char c);
 void			ft_adjust(s_struct *f, int mode, int len);
 int				ft_string(char *str, s_struct *f);
 int				ft_decimal(int n, s_struct *f);

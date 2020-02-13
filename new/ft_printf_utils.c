@@ -102,7 +102,7 @@ int		ft_integer2(unsigned int n, char *s, s_struct *f)
 	{
 		if (f->width && f->zero)
 		{
-			i += ft_char('-');
+			i += ft_putchar('-');
 			f->width--;
 		}
 		else
@@ -149,14 +149,14 @@ int		ft_hex2(uint64_t n, char *s, s_struct *f, int caps)
 		*--s = (caps == 1 ? hex2[(n % 16)]: hex[(n % 16)]);
 		n /= 16;
 	}
-	if (f->adress == 2)
+	if (f->pointer == 2)
 	{
 		*--s = 'x';
 		*--s = '0';
 	}
 	while (f->prec > ft_strlen(s) && ft_strlen(s) < f->width)
 		*--s = '0';
-	return (i + (ft_print(s, f, 0)) - f->adress);
+	return (i + (ft_print(s, f, 0)) - f->pointer);
 }
 
 int		ft_hex(uint64_t n, s_struct *f, int caps)
@@ -168,7 +168,7 @@ int		ft_hex(uint64_t n, s_struct *f, int caps)
 	nb = n;
 	if (!n)
 	{
-		if (f->adress == 2)
+		if (f->pointer == 2)
 		{
 			buffer[0] = '0';
 			buffer[1] = 'x';
@@ -188,7 +188,7 @@ int		ft_hex(uint64_t n, s_struct *f, int caps)
 	return (ft_hex2(nb, s, f, caps));
 }
 
-int		ft_printc(int c, s_struct *f, int mode)
+int		ft_char(int c, s_struct *f, int mode)
 {
 	char s[2];
 
@@ -202,7 +202,17 @@ int		ft_printc(int c, s_struct *f, int mode)
 		f->width = f->width - 1;
 	}
 	if (f->width == 0)
-		return (ft_char(c));
+		return (ft_putchar(c));
 	else
 		return (c == 0 ? ft_print(s, f, 1) + 1 : ft_print(s, f, 1));
+}
+
+int			ft_pointer(void *adr, s_struct *f)
+{
+	int		len;
+	int		i;
+
+	len = ft_ilen((uint64_t)adr, 16);
+	f->pointer = 2;
+	return (ft_hex((uint64_t)adr, f, 0) + 2);
 }

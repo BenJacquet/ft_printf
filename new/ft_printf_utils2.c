@@ -20,6 +20,14 @@ int		ft_isspace(int c)
 		return (0);
 }
 
+int		ft_isdigit(int c)
+{
+	if (c >= '0' && c <= '9')
+		return (1);
+	else
+		return (0);
+}
+
 int		ft_abs(int n)
 {
 	return (n < 0 ? (int64_t)-n : (int64_t)n);
@@ -55,14 +63,6 @@ void	ft_bzero(void *s, size_t n)
 		return ;
 	else
 		ft_memset(s, 0, n);
-}
-
-int		ft_isdigit(int c)
-{
-	if (c >= '0' && c <= '9')
-		return (1);
-	else
-		return (0);
 }
 
 char		*ft_strrev(char *str)

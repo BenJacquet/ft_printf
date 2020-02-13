@@ -15,41 +15,42 @@
 #include "ft_printf_display.c"
 #include "ft_printf_utils2.c"
 
-void ft_adjust(s_struct *f, int mode, int len)
+void ft_adjust(s_struct *f)
+{ // ajustement des flags
+	
+}
+
+const char *ft_specifier(const char *id, s_struct *f)
 {
-	if (mode == 0)
+	// recuperation du specifier
+	if ((*id == 'c') || (*id == 's') || (*id == 'p') ||
+		(*id == 'd') || (*id == 'i') || (*id == 'u') ||
+		(*id == 'x') || (*id == 'X') || (*id == '%'))
 	{
-		if ((f->width == 0 || f->width <= f->prec) && f->prec > 0)
-		{
-			f->width = f->prec;
-			f->zero = 1;
-		}
+		f->specifier = *id;
+		id++;
 	}
-	else if (mode == 1)
-	{
-		if (f->handle == 1 && f->prec == 0)
-			f->null = 1;
-		else if (f->width == 0 && f->prec > 0 && len > f->prec)
-			f->width = len;
-	}
+	ft_adjust(f);
+	return (id);
 }
 
 const char *ft_precision(const char *id, va_list va_lst, s_struct *f)
 { // recuperation de la precision
 	if (*id == '.')
 	{
-		f->handle = 1;
 		id++;
 		if (ft_isdigit(*id))
-			f->prec = ft_atoi(id);
+			f->precision= ft_atoi(id);
 		else if (*id == '*')
 		{
-			f->prec = va_arg(va_lst, int);
-			f->prec = (f->prec < 0 ? 0 : f->prec);
+			f->precision= va_arg(va_lst, int);
+			f->precision= (f->precision< 0 ? 0 : f->precision);
 			id++;
 		}
+		if (f->precision)
+			 f->zero = 0; // si il y a une precision on ignore le flag zero
 	}
-	return (id);
+	return (ft_specifier(id, f));
 }
 
 const char *ft_width(const char *id, va_list va_lst, s_struct *f)
@@ -62,7 +63,7 @@ const char *ft_width(const char *id, va_list va_lst, s_struct *f)
 		id++;
 	}
 	if (f->width < 0)
-	{
+	{ // si la largeur est negative on active le flag left
 		f->left = 1;
 		f->width = (unsigned int)ft_abs(f->width);
 	}
@@ -86,36 +87,34 @@ const char *ft_flag(const char *id, va_list va_lst, s_struct *f)
 
 int ft_function(const char *id, va_list va_lst, s_struct *f)
 {
-	if (*id == '%')
-		return (ft_printc('%', f, 1));
-	else if (*id == 'c')
-		return (ft_printc(va_arg(va_lst, int), f, 1));
+
+	if (*id == 'c')
+		return (ft_char(va_arg(va_lst, int), f, 1));
 	else if (*id == 's')
-		return (ft_print(va_arg(va_lst, char *), f, 1));
+		return (ft_string(va_arg(va_lst, char *), f, 1));
 	else if (*id == 'p')
-		return (ft_address((void *)va_arg(va_lst, uint64_t), f));
+		return (ft_pointer((void *)va_arg(va_lst, uint64_t), f));
 	else if (*id == 'd' || *id == 'i')
 		return (ft_integer(va_arg(va_lst, int), f, 1));
 	else if (*id == 'u')
-		return (ft_integer(va_arg(va_lst, int), f, 0));
+		return (ft_uinteger(va_arg(va_lst, int), f, 0));
 	else if (*id == 'x')
 		return (ft_hex(va_arg(va_lst, unsigned int), f, 0));
 	else if (*id == 'X')
 		return (ft_hex(va_arg(va_lst, unsigned int), f, 1));
+	else if (*id == '%')
+		return (ft_printc('%', f, 1));
 	return (0);
 }
 
 void ft_initialize(s_struct *f)
 {
+	f->specifier = 0;
 	f->width = 0;
-	f->prec = 0;
-	f->neg = 0;
+	f->precision = 0;
 	f->left = 0;
-	f->adress = 0;
+	f->pointer = 0;
 	f->zero = 0;
-	f->null = 0;
-	f->wild = 0;
-	f->handle = 0;
 }
 
 int ft_process(const char *format, va_list va_lst, s_struct *f)
@@ -128,13 +127,13 @@ int ft_process(const char *format, va_list va_lst, s_struct *f)
 	while (*format)
 	{
 		if (*format != '%')
-			ft_char(*format++); // remplacer par remplissage du buffer;
+			ft_putchar(*format++); // remplacer par remplissage du buffer;
 		// implementer affichage et reset du buffer si plein
 		else
 		{
 			format = ft_flag(format, va_lst, f);
-			// implementer conversion des arguments 
-			ft_fill()// implementer remplissage du buffer;
+			// implementer conversion des arguments
+			//ft_fill()// implementer remplissage du buffer;
 		}
 	}
 	// implementer affichage du buffer et ajout de count += strlen(buffer)
