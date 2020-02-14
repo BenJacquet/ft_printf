@@ -57,12 +57,6 @@ int		ft_print(char *s, s_struct *f, int mode)
 	len = ft_strlen(s);
 	i = 0;
 	ft_adjust(f, mode, len);
-/*	printf("\nf->width = %d", f->width);
-	printf("\nf->prec = %d", f->prec);
-	printf("\nf->space = %d", f->space);
-	printf("\nf->zero = %d", f->zero);
-	printf("\nf->null = %d", f->null);
-	printf("\nf->handle = %d", f->handle);*/
 	if (mode == 1 && (f->null == 1 || (f->handle == 1 && f->width == 0 &&
 			f->precision == 0)))
 		return (0);

@@ -43,6 +43,23 @@ int			ft_strlen(char *str)
 	return (len);
 }
 
+int			ft_ilen(unsigned int n, int base)
+{
+	int64_t		len;
+	int64_t		nb;
+
+	len = 0;
+	if (n < 0)
+		len++;
+	nb = ft_abs(n);
+	while (nb > base)
+	{
+		nb = nb / base;
+		len++;
+	}
+	return (len + 1);
+}
+
 void	*ft_memset(void *b, int c, size_t len)
 {
 	unsigned int	i;
@@ -85,37 +102,18 @@ char		*ft_strrev(char *str)
 	return (str);
 }
 
-int			ft_ilen(unsigned int n, int mode)
-{
-	int64_t		len;
-	int64_t		nb;
-
-	len = 0;
-	if (n < 0)
-		len++;
-	nb = ft_abs(n);
-	while (nb > mode)
-	{
-		nb = nb / mode;
-		len++;
-	}
-	return (len + 1);
-}
-
 int		ft_atoi(const char *str)
 {
-	int					i;
 	size_t				result;
 	int					sign;
 
-	i = 0;
 	result = 0;
 	sign = 1;
-	while (ft_isspace(str[i]))
-		i++;
-	if (str[i] == '-' || str[i] == '+')
-		sign = str[i++] == '-' ? -1 : 1;
-	while (str[i] >= '0' && str[i] <= '9')
-		result = (result * 10) + (str[i++] - 48);
+	while (ft_isspace(*str))
+		str++;
+	if (*str == '-' || *str == '+')
+		sign = *str == '-' ? -1 : 1;
+	while (*str >= '0' && *str <= '9')
+		result = (result * 10) + (*str++ - 48);
 	return (result * sign);
 }

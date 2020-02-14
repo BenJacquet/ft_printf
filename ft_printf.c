@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include "ft_printf_utils.c"
+//#include "ft_printf_utils.c"
 #include "ft_printf_display.c"
 #include "ft_printf_utils2.c"
 
@@ -19,11 +19,10 @@ void	ft_test_struct(s_struct *f)
 {
 	printf("f->width = %d", f->width);
 	printf("\nf->precision = %d", f->precision);
-	printf("\nf->specifier = %d", f->specifier);
+	printf("\nf->specifier = '%c'", f->specifier);
 	printf("\nf->left = %d", f->left);
 	printf("\nf->zero = %d", f->zero);
 	printf("\nf->pointer = %d", f->pointer);
-
 }
 
 const char *ft_specifier(const char *id, s_struct *f)
@@ -36,6 +35,8 @@ const char *ft_specifier(const char *id, s_struct *f)
 		f->specifier = *id;
 		id++;
 	}
+	if (f->specifier == '\0')
+		ft_putchar('%');
 	return (id);
 }
 
@@ -45,11 +46,14 @@ const char *ft_precision(const char *id, va_list va_lst, s_struct *f)
 	{
 		id++;
 		if (ft_isdigit(*id))
-			f->precision= ft_atoi(id);
+		{
+			f->precision = ft_atoi(id);
+			id += ft_ilen(f->width, 10); // idem que width
+		}
 		else if (*id == '*')
 		{
-			f->precision= va_arg(va_lst, int);
-			f->precision= (f->precision< 0 ? 0 : f->precision);
+			f->precision = va_arg(va_lst, int);
+			f->precision = (f->precision < 0 ? 0 : f->precision);
 			id++;
 		}
 		if (f->precision)
@@ -61,7 +65,10 @@ const char *ft_precision(const char *id, va_list va_lst, s_struct *f)
 const char *ft_width(const char *id, va_list va_lst, s_struct *f)
 { // recuperation de la largeur
 	if (ft_isdigit(*id))
+	{
 		f->width = ft_atoi(id);
+		id += ft_ilen(f->width, 10); // on avance dans id de n char
+	}
 	else if (*id == '*')
 	{
 		f->width = va_arg(va_lst, int);
@@ -76,7 +83,7 @@ const char *ft_width(const char *id, va_list va_lst, s_struct *f)
 }
 
 const char *ft_flag(const char *id, va_list va_lst, s_struct *f)
-{ // recuperation des flags "zero" et "left";
+{ // recuperation des flags "zero" et "left"
 	if (*id == '0')
 	{
 		f->zero = 1;
@@ -90,7 +97,7 @@ const char *ft_flag(const char *id, va_list va_lst, s_struct *f)
 	return (ft_width(id, va_lst, f));
 }
 
-int ft_function(const char *id, va_list va_lst, s_struct *f)
+/*int ft_function(const char *id, va_list va_lst, s_struct *f)
 {
 
 	if (*id == 'c')
@@ -110,7 +117,7 @@ int ft_function(const char *id, va_list va_lst, s_struct *f)
 	else if (*id == '%')
 		return (ft_printc('%', f, 1));
 	return (0);
-}
+}*/
 
 void ft_initialize(s_struct *f)
 {
@@ -128,18 +135,19 @@ int ft_process(const char *format, va_list va_lst, s_struct *f)
 	char	buffer[4096];
 
 	count = 0;
-	ft_bzero(buffer, 4096);
+//	ft_bzero(buffer, 4096);
 	while (*format)
 	{
 		if (*format != '%')
-			ft_putchar(*format++); // remplacer par remplissage du buffer;
+			ft_putchar(*format++); // remplacer par remplissage du buffer
 		// implementer affichage et reset du buffer si plein
 		else
 		{
-			format = ft_flag(format, va_lst, f);
+			format = ft_flag(++format, va_lst, f);
 			ft_test_struct(f);
+			ft_initialize(f);
 			// implementer conversion des arguments
-			//ft_fill()// implementer remplissage du buffer;
+			//ft_fill()// implementer remplissage du buffer
 		}
 	}
 	// implementer affichage du buffer et ajout de count += strlen(buffer)
