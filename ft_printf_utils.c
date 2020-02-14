@@ -23,19 +23,19 @@ int		ft_print2(char *s, s_struct *f, int len, int mode)
 
 	i = 0;
 
-	if (mode == 1 && f->prec < len && f->prec)
-		len = f->prec;
-	if (*s && mode == 1 && f->prec > 0 && f->width == 0)
+	if (mode == 1 && f->precision < len && f->precision)
+		len = f->precision;
+	if (*s && mode == 1 && f->precision > 0 && f->width == 0)
 	{
 		write(1, s, len);
 		i += len;
 	}
-	else if (*s && f->prec != -1)
+	else if (*s && f->precision != -1)
 	{
 		write(1, s, len);
 		i += len;
 	}
-	else if (f->prec == -1)
+	else if (f->precision == -1)
 		f->width = len;
 	while (f->width > 0)
 	{
@@ -64,7 +64,7 @@ int		ft_print(char *s, s_struct *f, int mode)
 	printf("\nf->null = %d", f->null);
 	printf("\nf->handle = %d", f->handle);*/
 	if (mode == 1 && (f->null == 1 || (f->handle == 1 && f->width == 0 &&
-			f->prec == 0)))
+			f->precision == 0)))
 		return (0);
 	if (f->width > 0)
 	{
@@ -74,7 +74,7 @@ int		ft_print(char *s, s_struct *f, int mode)
 			f->width = 0;
 		}
 		else
-			f->width = (f->prec > 0 && mode == 1 ? len : f->width - len);
+			f->width = (f->precision > 0 && mode == 1 ? len : f->width - len);
 	}
 //	f->pad = (f->zero == 1 ? '0' : ' ');
 	while (f->left != 1 && f->width > 0)
@@ -96,7 +96,7 @@ int		ft_integer2(unsigned int n, char *s, s_struct *f)
 		*--s = (n % 10) + '0';
 		n /= 10;
 	}
-	while (f->prec > ft_strlen(s) && ft_strlen(s) < f->width)
+	while (f->precision > ft_strlen(s) && ft_strlen(s) < f->width)
 		*--s = '0';
 	if (f->neg)
 	{
@@ -154,7 +154,7 @@ int		ft_hex2(uint64_t n, char *s, s_struct *f, int caps)
 		*--s = 'x';
 		*--s = '0';
 	}
-	while (f->prec > ft_strlen(s) && ft_strlen(s) < f->width)
+	while (f->precision > ft_strlen(s) && ft_strlen(s) < f->width)
 		*--s = '0';
 	return (i + (ft_print(s, f, 0)) - f->pointer);
 }

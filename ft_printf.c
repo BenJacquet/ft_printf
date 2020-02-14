@@ -15,9 +15,15 @@
 #include "ft_printf_display.c"
 #include "ft_printf_utils2.c"
 
-void ft_adjust(s_struct *f)
-{ // ajustement des flags
-	
+void	ft_test_struct(s_struct *f)
+{
+	printf("f->width = %d", f->width);
+	printf("\nf->precision = %d", f->precision);
+	printf("\nf->specifier = %d", f->specifier);
+	printf("\nf->left = %d", f->left);
+	printf("\nf->zero = %d", f->zero);
+	printf("\nf->pointer = %d", f->pointer);
+
 }
 
 const char *ft_specifier(const char *id, s_struct *f)
@@ -30,7 +36,6 @@ const char *ft_specifier(const char *id, s_struct *f)
 		f->specifier = *id;
 		id++;
 	}
-	ft_adjust(f);
 	return (id);
 }
 
@@ -91,7 +96,7 @@ int ft_function(const char *id, va_list va_lst, s_struct *f)
 	if (*id == 'c')
 		return (ft_char(va_arg(va_lst, int), f, 1));
 	else if (*id == 's')
-		return (ft_string(va_arg(va_lst, char *), f, 1));
+		return (ft_string(va_arg(va_lst, char *), f));
 	else if (*id == 'p')
 		return (ft_pointer((void *)va_arg(va_lst, uint64_t), f));
 	else if (*id == 'd' || *id == 'i')
@@ -132,6 +137,7 @@ int ft_process(const char *format, va_list va_lst, s_struct *f)
 		else
 		{
 			format = ft_flag(format, va_lst, f);
+			ft_test_struct(f);
 			// implementer conversion des arguments
 			//ft_fill()// implementer remplissage du buffer;
 		}
