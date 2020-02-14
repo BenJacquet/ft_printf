@@ -35,8 +35,6 @@ const char *ft_specifier(const char *id, s_struct *f)
 		f->specifier = *id;
 		id++;
 	}
-	if (f->specifier == '\0')
-		ft_putchar('%');
 	return (id);
 }
 
@@ -97,27 +95,44 @@ const char *ft_flag(const char *id, va_list va_lst, s_struct *f)
 	return (ft_width(id, va_lst, f));
 }
 
-/*int ft_function(const char *id, va_list va_lst, s_struct *f)
+/*int ft_select(va_list va_lst, s_struct *f, char **buffer)
 {
-
-	if (*id == 'c')
+	if (f->specifier == 'c')
 		return (ft_char(va_arg(va_lst, int), f, 1));
-	else if (*id == 's')
+	else if (f->specifier == 's')
 		return (ft_string(va_arg(va_lst, char *), f));
-	else if (*id == 'p')
+	else if (f->specifier == 'p')
 		return (ft_pointer((void *)va_arg(va_lst, uint64_t), f));
-	else if (*id == 'd' || *id == 'i')
+	else if (f->specifier == 'd' || f->specifier == 'i')
 		return (ft_integer(va_arg(va_lst, int), f, 1));
-	else if (*id == 'u')
+	else if (f->specifier == 'u')
 		return (ft_uinteger(va_arg(va_lst, int), f, 0));
-	else if (*id == 'x')
+	else if (f->specifier == 'x')
 		return (ft_hex(va_arg(va_lst, unsigned int), f, 0));
-	else if (*id == 'X')
+	else if (f->specifier == 'X')
 		return (ft_hex(va_arg(va_lst, unsigned int), f, 1));
-	else if (*id == '%')
+	else if (f->specifier == '%')
 		return (ft_printc('%', f, 1));
 	return (0);
 }*/
+
+void ft_fill(va_list va_lst, s_struct *f)
+{
+	char	buffer[4096];
+
+	ft_bzero(buffer, 4096);
+	if (!f->left)
+		//ft_prepad(f, buffer);
+//	ft_select(va_lst, f, buffer);
+	if (f->left)
+		//ft_postpad(f, buffer);
+	if (f->specifier == '%')
+	{
+
+	}
+	f->count = ft_strlen(buffer);
+	ft_putstr(buffer);
+}
 
 void ft_initialize(s_struct *f)
 {
@@ -127,27 +142,25 @@ void ft_initialize(s_struct *f)
 	f->left = 0;
 	f->pointer = 0;
 	f->zero = 0;
+	f->count = 0;
 }
 
 int ft_process(const char *format, va_list va_lst, s_struct *f)
 {
 	int		count;
-	char	buffer[4096];
 
 	count = 0;
-//	ft_bzero(buffer, 4096);
 	while (*format)
 	{
 		if (*format != '%')
 			ft_putchar(*format++); // remplacer par remplissage du buffer
-		// implementer affichage et reset du buffer si plein
 		else
 		{
 			format = ft_flag(++format, va_lst, f);
-			ft_test_struct(f);
+//			ft_test_struct(f);
+			ft_fill(va_lst, f); // implementer affichage d'un '%' si f->specifier == '%' a la fin du remplissage
+			count += f->count;
 			ft_initialize(f);
-			// implementer conversion des arguments
-			//ft_fill()// implementer remplissage du buffer
 		}
 	}
 	// implementer affichage du buffer et ajout de count += strlen(buffer)

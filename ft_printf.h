@@ -27,6 +27,7 @@ typedef struct			s_struct
 	int		left;
 	int		zero;
 	int		pointer;
+	int		count;
 }						s_struct;
 
 int				ft_strlen(char *str);

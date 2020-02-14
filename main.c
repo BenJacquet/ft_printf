@@ -11,5 +11,7 @@ int            main(int ac, char **av)
 	unsigned		u = 154645468;
 
 //	printf("\n '%-5' : mon return = %d\n", ft_printf("\n%-5"));
-	printf("\nReturn : %d", ft_printf("\n%015.*", x));
+//	printf("\nReturn : %d", ft_printf("\n%015.*%", x));
+//	ft_printf("bla%%%");
+	printf("%-15c", c);
 }
