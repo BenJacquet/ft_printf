@@ -24,6 +24,7 @@ typedef struct			s_struct
 	int		specifier;
 	int		width;
 	int		precision;
+	int		dot;
 	int		left;
 	int		zero;
 	int		pointer;
@@ -39,7 +40,7 @@ int				ft_abs(int n);
 void			ft_bzero(void *s, size_t n);
 void			*ft_memset(void *b, int c, size_t len);
 char			*ft_strrev(char *str);
-int				ft_ilen(unsigned int n, int baseß);
+int				ft_ilen(unsigned int n, int base);
 int				ft_putchar(char c);
 int				ft_string(char *str, s_struct *f);
 int				ft_decimal(int n, s_struct *f);

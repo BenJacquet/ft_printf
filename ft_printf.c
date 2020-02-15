@@ -43,6 +43,7 @@ const char *ft_precision(const char *id, va_list va_lst, s_struct *f)
 	if (*id == '.')
 	{
 		id++;
+		f->dot = 1;
 		if (ft_isdigit(*id))
 		{
 			f->precision = ft_atoi(id);
@@ -95,10 +96,13 @@ const char *ft_flag(const char *id, va_list va_lst, s_struct *f)
 	return (ft_width(id, va_lst, f));
 }
 
-/*int ft_select(va_list va_lst, s_struct *f, char **buffer)
+int ft_select(va_list va_lst, s_struct *f)
 {
+	char	buffer[4096];
+
+	ft_bzero(buffer, 4096);
 	if (f->specifier == 'c')
-		return (ft_char(va_arg(va_lst, int), f, 1));
+		return (ft_char(va_arg(va_lst, int), f));
 	else if (f->specifier == 's')
 		return (ft_string(va_arg(va_lst, char *), f));
 	else if (f->specifier == 'p')
@@ -114,24 +118,6 @@ const char *ft_flag(const char *id, va_list va_lst, s_struct *f)
 	else if (f->specifier == '%')
 		return (ft_printc('%', f, 1));
 	return (0);
-}*/
-
-void ft_fill(va_list va_lst, s_struct *f)
-{
-	char	buffer[4096];
-
-	ft_bzero(buffer, 4096);
-	if (!f->left)
-		//ft_prepad(f, buffer);
-//	ft_select(va_lst, f, buffer);
-	if (f->left)
-		//ft_postpad(f, buffer);
-	if (f->specifier == '%')
-	{
-
-	}
-	f->count = ft_strlen(buffer);
-	ft_putstr(buffer);
 }
 
 void ft_initialize(s_struct *f)
@@ -139,6 +125,7 @@ void ft_initialize(s_struct *f)
 	f->specifier = 0;
 	f->width = 0;
 	f->precision = 0;
+	f->dot = 0;
 	f->left = 0;
 	f->pointer = 0;
 	f->zero = 0;
@@ -158,7 +145,7 @@ int ft_process(const char *format, va_list va_lst, s_struct *f)
 		{
 			format = ft_flag(++format, va_lst, f);
 //			ft_test_struct(f);
-			ft_fill(va_lst, f); // implementer affichage d'un '%' si f->specifier == '%' a la fin du remplissage
+			ft_select(va_lst, f);
 			count += f->count;
 			ft_initialize(f);
 		}

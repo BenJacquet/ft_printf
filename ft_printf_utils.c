@@ -182,23 +182,13 @@ int		ft_hex(uint64_t n, s_struct *f, int caps)
 	return (ft_hex2(nb, s, f, caps));
 }
 
-int		ft_char(int c, s_struct *f, int mode)
+int		ft_char(int c, s_struct *f)
 {
-	char s[2];
-
-	s[0] = (char)c;
-	s[1] = '\0';
-
-	if (f->width > 0 && c == 0)
-	{
-		if (f->left == 1)
-			return (f->width);
-		f->width = f->width - 1;
-	}
-	if (f->width == 0)
-		return (ft_putchar(c));
-	else
-		return (c == 0 ? ft_print(s, f, 1) + 1 : ft_print(s, f, 1));
+	if (f->left)
+		ft_putchar(c);
+	f->count = ft_width(f);
+	if (!f->left)
+		ft_putchar(c);
 }
 
 int			ft_pointer(void *adr, s_struct *f)

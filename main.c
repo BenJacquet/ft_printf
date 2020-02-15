@@ -1,9 +1,10 @@
-#include "ft_printf.h"
+//#include "ft_printf.h"
+#include <stdio.h>
 
 int            main(int ac, char **av)
 {
 	int				d = 588;
-	int				f = 30;
+	int				f = 1;
 	char			c = 'a';
 	char			*s = "salut je suis ben";
 	int				x = 2554564;
@@ -13,5 +14,5 @@ int            main(int ac, char **av)
 //	printf("\n '%-5' : mon return = %d\n", ft_printf("\n%-5"));
 //	printf("\nReturn : %d", ft_printf("\n%015.*%", x));
 //	ft_printf("bla%%%");
-	printf("%-15c", c);
+	printf("%3.s\n", s);
 }
