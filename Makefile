@@ -26,11 +26,4 @@ fclean : clean
 
 re : fclean all
 
-debug :
-	gcc -g ft_printf.c main.c
-	rm -rf ~/WIP/a.out
-	rm -rf ~/WIP/a.out.dSYM/
-	cp a.out ~/WIP/
-	cp -rf a.out.dSYM ~/WIP/
-
 .PHONY : all clean fclean re bonus

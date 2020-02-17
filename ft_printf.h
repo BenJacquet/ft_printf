@@ -24,10 +24,10 @@ typedef struct			s_struct
 	int		specifier;
 	int		width;
 	int		precision;
-	int		dot;
 	int		left;
 	int		zero;
 	int		pointer;
+	int		len;
 	int		count;
 }						s_struct;
 
@@ -42,7 +42,7 @@ void			*ft_memset(void *b, int c, size_t len);
 char			*ft_strrev(char *str);
 int				ft_ilen(unsigned int n, int base);
 int				ft_putchar(char c);
-int				ft_string(char *str, s_struct *f);
+void			ft_string(char *str, s_struct *f);
 int				ft_decimal(int n, s_struct *f);
 int				ft_hex(uint64_t n, s_struct *f, int caps);
 int				ft_address(void *adr, s_struct *f);

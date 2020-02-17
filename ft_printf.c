@@ -43,7 +43,7 @@ const char *ft_precision(const char *id, va_list va_lst, s_struct *f)
 	if (*id == '.')
 	{
 		id++;
-		f->dot = 1;
+		f->precision = 0;
 		if (ft_isdigit(*id))
 		{
 			f->precision = ft_atoi(id);
@@ -98,25 +98,22 @@ const char *ft_flag(const char *id, va_list va_lst, s_struct *f)
 
 int ft_select(va_list va_lst, s_struct *f)
 {
-	char	buffer[4096];
-
-	ft_bzero(buffer, 4096);
 	if (f->specifier == 'c')
-		return (ft_char(va_arg(va_lst, int), f));
+		ft_char(va_arg(va_lst, int), f);
 	else if (f->specifier == 's')
-		return (ft_string(va_arg(va_lst, char *), f));
+		ft_string(va_arg(va_lst, char *), f);
 	else if (f->specifier == 'p')
-		return (ft_pointer((void *)va_arg(va_lst, uint64_t), f));
+		ft_pointer((void *)va_arg(va_lst, unsigned long long), f);
 	else if (f->specifier == 'd' || f->specifier == 'i')
-		return (ft_integer(va_arg(va_lst, int), f, 1));
+		ft_integer(va_arg(va_lst, int), f, 1);
 	else if (f->specifier == 'u')
-		return (ft_uinteger(va_arg(va_lst, int), f, 0));
+		ft_uinteger(va_arg(va_lst, int), f, 0);
 	else if (f->specifier == 'x')
-		return (ft_hex(va_arg(va_lst, unsigned int), f, 0));
+		ft_hex(va_arg(va_lst, unsigned int), f, 0);
 	else if (f->specifier == 'X')
-		return (ft_hex(va_arg(va_lst, unsigned int), f, 1));
+		ft_hex(va_arg(va_lst, unsigned int), f, 1);
 	else if (f->specifier == '%')
-		return (ft_printc('%', f, 1));
+		ft_printc('%', f, 1);
 	return (0);
 }
 
@@ -124,12 +121,12 @@ void ft_initialize(s_struct *f)
 {
 	f->specifier = 0;
 	f->width = 0;
-	f->precision = 0;
-	f->dot = 0;
+	f->precision = -1;
 	f->left = 0;
 	f->pointer = 0;
 	f->zero = 0;
 	f->count = 0;
+	f->len = 0;
 }
 
 int ft_process(const char *format, va_list va_lst, s_struct *f)
@@ -140,7 +137,7 @@ int ft_process(const char *format, va_list va_lst, s_struct *f)
 	while (*format)
 	{
 		if (*format != '%')
-			ft_putchar(*format++); // remplacer par remplissage du buffer
+			ft_putchar(*format++);
 		else
 		{
 			format = ft_flag(++format, va_lst, f);
