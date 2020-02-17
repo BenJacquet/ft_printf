@@ -1,6 +1,6 @@
 #include "ft_printf.h"
 
-void	ft_treat_pointer(unsigned long long pointer, s_struct *f)
+void	ft_pointer(unsigned long long pointer, s_struct *f)
 {
 	char    *buffer;
 

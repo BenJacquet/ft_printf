@@ -9,7 +9,7 @@ void	ft_width(s_struct *f, int mode)
 
 	limit = (mode == 1 ? f->precision : f->len);
 	limit += (f->pointer == 1 ? 2 : 0);
-    while (f->width - f->precision > 0)
+    while (f->width - limit > 0)
     {
 	    if (f->zero)
 		    ft_putchar('0');

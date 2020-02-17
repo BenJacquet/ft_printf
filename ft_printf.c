@@ -113,7 +113,7 @@ int ft_select(va_list va_lst, s_struct *f)
 	else if (f->specifier == 'X')
 		ft_hex(va_arg(va_lst, unsigned int), f, 1);
 	else if (f->specifier == '%')
-		ft_printc('%', f, 1);
+		f->count += ft_putchar('%');
 	return (0);
 }
 
@@ -137,7 +137,7 @@ int ft_process(const char *format, va_list va_lst, s_struct *f)
 	while (*format)
 	{
 		if (*format != '%')
-			ft_putchar(*format++);
+			count += ft_putchar(*format++);
 		else
 		{
 			format = ft_flag(++format, va_lst, f);
