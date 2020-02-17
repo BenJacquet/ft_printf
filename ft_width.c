@@ -20,7 +20,7 @@ void	ft_width(s_struct *f, int mode)
     }
 }
 
-void ft_padding(char *str, s_struct *f)
+void ft_padding_str(char *str, s_struct *f)
 {
 	if (f->pointer) // ajout du "0x" si il s'agit d'un pointeur
 		ft_putstr_mod("0x", f, 0);
@@ -29,6 +29,6 @@ void ft_padding(char *str, s_struct *f)
 		ft_width(f, 0);
 		ft_putstr_mod(str, f, 1); // si precision on l'utilise au lieu de len
 	}
-	else if (f->precision < 0)
+	else
 		ft_putstr_mod(str, f, 0); // si aucune precision on utilise la len
 }

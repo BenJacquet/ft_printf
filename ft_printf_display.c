@@ -7,11 +7,20 @@ int		ft_putchar(char c)
 	return (1);
 }
 
+// mode = 1 : on utilise la precision
+// mode = 0 : on utilise la len
 void	ft_putstr_mod(char *str, s_struct *f, int mode)
 {
 	int	limit;
+	int	count;
+	int len;
 
-	limit = (mode == 1 ? f->precision : f->len);
-	while (str[f->count] && f->count < limit)
-		ft_putchar(str[f->count++]);
+	count = 0;
+	len = ft_strlen(str);
+	limit = (mode == 1 ? f->precision : len);
+	while (str[count] && count < limit)
+	{
+		ft_putchar(str[count++]);
+		f->count++;
+	}
 }

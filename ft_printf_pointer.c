@@ -14,9 +14,9 @@ void	ft_pointer(unsigned long long pointer, s_struct *f)
 	if ((size_t)f->precision < ft_strlen(buffer))
 		f->precision = f->len;
 	if (f->left)
-		ft_padding(buffer, f);
+		ft_padding_str(buffer, f);
 	ft_width(f, 0);
 	if (!f->left)
-		ft_padding(buffer, f);
+		ft_padding_str(buffer, f);
 	free(buffer);
 }
