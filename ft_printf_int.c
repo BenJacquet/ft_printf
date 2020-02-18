@@ -6,26 +6,26 @@
 /*   By: jabenjam <jabenjam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 14:14:27 by jabenjam          #+#    #+#             */
-/*   Updated: 2020/02/18 14:14:28 by jabenjam         ###   ########.fr       */
+/*   Updated: 2020/02/18 16:43:24 by jabenjam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void    ft_padding_int(char *buffer, s_struct *f, int sign)
+void		ft_padding_int(char *buffer, t_data *f, int sign)
 {
 	if (sign == 1 && f->precision >= 0)
 		ft_putchar('-');
 	if (f->precision >= 0)
 	{
-        f->zero = 1;
-        f->width = f->precision - 1;
+		f->zero = 1;
+		f->width = f->precision - 1;
 		ft_width(f, 0);
 	}
-    ft_putstr_mod(buffer, f->len);
+	ft_putstr_mod(buffer, f, 0);
 }
 
-void    ft_int_next(char *buffer, s_struct *f, int sign)
+void		ft_int_next(char *buffer, t_data *f, int sign)
 {
 	if (f->left)
 		ft_padding_int(buffer, f, sign);
@@ -42,22 +42,24 @@ void    ft_int_next(char *buffer, s_struct *f, int sign)
 		ft_padding_int(buffer, f, sign);
 }
 
-void    ft_int(int nb, s_struct *f)
+/*
+** CP : Si nb = 0 et aucune precision on print la largeur si il y en a une
+*/
+void		ft_int(int nb, t_data *f)
 {
-	char    *buffer;
-	int     sign;
+	char	*buffer;
+	int		sign;
 
-	sign = (nb < 0 ? 1 : 0); // stockage du signe
-	if (!f->precision && !nb) // si nb = 0 et aucune precision on print la largeur
+	sign = (nb < 0 ? 1 : 0);
+	if (!f->precision && !nb && f->width)
 		return (ft_width(f, 0));
 	if (nb < 0 && (f->precision >= 0 || f->zero))
 	{
 		if (f->zero && f->precision == -1)
-			ft_putstr_mod("-", 0);
+			ft_putstr_mod("-", f, 0);
 		nb = ft_abs(nb);
 		f->zero = 1;
-		f->width--; //on compte le signe;
-		f->count++;
+		f->width--; // modifier ici si il y a un bug
 	}
 	buffer = ft_itoa(nb);
 	f->len = ft_strlen(buffer);

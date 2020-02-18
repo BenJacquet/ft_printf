@@ -1,39 +1,50 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_display.c                                :+:      :+:    :+:   */
+/*   ft_printf_length.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jabenjam <jabenjam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/18 14:14:18 by jabenjam          #+#    #+#             */
-/*   Updated: 2020/02/18 17:02:08 by jabenjam         ###   ########.fr       */
+/*   Created: 2020/02/18 15:58:28 by jabenjam          #+#    #+#             */
+/*   Updated: 2020/02/18 16:53:26 by jabenjam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-
-int			ft_putchar(char c)
+int					ft_strlen(char *str)
 {
-	write(1, &c, 1);
-	return (1);
+	int				len;
+
+	len = 0;
+	while (str[len])
+		len++;
+	return (len);
 }
 
-/*
-** Mode = 0 : On utilise la len
-** Mode = 1 : On utilise la precision
-*/
-void		ft_putstr_mod(char *str, t_data *f, int mode)
+int					ft_ilen(unsigned int nb, int base)
 {
-	int		limit;
-	int		count;
-	int		len;
+	unsigned int	len;
 
-	count = 0;
-	len = ft_strlen(str);
-	limit = (mode == 1 ? f->precision : len);
-	while (str[count] && count < limit)
+	len = 0;
+	if (nb < 0)
+		len++;
+	nb = ft_abs(nb);
+	while (nb > base)
 	{
-		ft_putchar(str[count++]);
-		f->count++;
+		nb /= base;
+		len++;
 	}
+	return (len + 1);
+}
+
+int					ft_ulllen(unsigned long long nb, int base)
+{
+	unsigned int	len;
+
+	len = 0;
+	while (nb > base)
+	{
+		nb /= base;
+		len++;
+	}
+	return (len + 1);
 }

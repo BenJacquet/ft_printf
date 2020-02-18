@@ -1,46 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_width.c                                         :+:      :+:    :+:   */
+/*   ft_printf_width.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jabenjam <jabenjam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 14:15:07 by jabenjam          #+#    #+#             */
-/*   Updated: 2020/02/18 14:15:08 by jabenjam         ###   ########.fr       */
+/*   Updated: 2020/02/18 16:51:18 by jabenjam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-// mode 0 = aucune precision
-// mode 1 = precision existante
-// si "%p" = on compte deux char de moins
-void	ft_width(s_struct *f, int mode)
+/*
+** Mode = 0 : On utilise la len
+** Mode = 1 : On utilise la precision
+** CP : Si "%p" = on compte deux char de moins pour le "0x"
+*/
+void	ft_width(t_data *f, int mode)
 {
 	int	limit;
 
 	limit = (mode == 1 ? f->precision : f->len);
 	limit += (f->pointer == 1 ? 2 : 0);
-    while (f->width - limit > 0)
-    {
-	    if (f->zero)
-		    ft_putchar('0');
-    	else
-	    	ft_putchar(' ');
-	    f->width--;
-	    f->count++;
-    }
-}
-
-void ft_padding_str(char *str, s_struct *f)
-{
-	if (f->pointer) // ajout du "0x" si il s'agit d'un pointeur
-		ft_putstr_mod("0x", f, 0);
-	if (f->precision >= 0)
+	while (f->width - limit > 0)
 	{
-		ft_width(f, 0);
-		ft_putstr_mod(str, f, 1); // si precision on l'utilise au lieu de len
+		if (f->zero)
+			ft_putchar('0');
+		else
+			ft_putchar(' ');
+		f->width--;
+		f->count++;
 	}
-	else
-		ft_putstr_mod(str, f, 0); // si aucune precision on utilise la len
 }
