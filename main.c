@@ -14,5 +14,5 @@ int            main(int ac, char **av)
 //	printf("\n '%-5' : mon return = %d\n", ft_printf("\n%-5"));
 //	printf("\nReturn : %d", ft_printf("\n%015.*%", x));
 //	ft_printf("bla%%%");
-	printf("%3s\n", s);
+	printf("%X\n", X);
 }

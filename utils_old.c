@@ -158,23 +158,6 @@ int		ft_hex(uint64_t n, s_struct *f, int caps)
 	uint64_t	nb;
 
 	nb = n;
-	if (!n)
-	{
-		if (f->pointer == 2)
-		{
-			buffer[0] = '0';
-			buffer[1] = 'x';
-			buffer[2] = '0';
-			buffer[3] = '\0';
-			return (ft_print(buffer, f, 0) - 2);
-		}
-		else
-		{
-			buffer[0] = '0';
-			buffer[1] = '\0';
-		}
-		return (ft_print(buffer, f, 0));
-	}
 	s = buffer + 4095;
 	*s = '\0';
 	return (ft_hex2(nb, s, f, caps));

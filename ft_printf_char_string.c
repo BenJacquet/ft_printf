@@ -22,7 +22,7 @@ void	ft_char(int c, s_struct *f)
 {
 	if (f->left)
 		ft_putchar(c);
-	ft_width(f); // implementer l'incrementation de f->count dans ft_width()
+	ft_width(f);
 	if (!f->left)
 		ft_putchar(c);
 	f->count++; // on compte le char a print
