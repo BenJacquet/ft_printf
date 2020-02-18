@@ -6,23 +6,13 @@
 /*   By: jabenjam <jabenjam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 14:14:13 by jabenjam          #+#    #+#             */
-/*   Updated: 2020/02/18 15:08:03 by jabenjam         ###   ########.fr       */
+/*   Updated: 2020/02/18 15:10:33 by jabenjam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 //#include "ft_printf_utils.c"
 #include "ft_printf_display.c"
-
-void	ft_test_struct(s_struct *f)
-{
-	printf("f->width = %d", f->width);
-	printf("\nf->precision = %d", f->precision);
-	printf("\nf->specifier = '%c'", f->specifier);
-	printf("\nf->left = %d", f->left);
-	printf("\nf->zero = %d", f->zero);
-	printf("\nf->pointer = %d", f->pointer);
-}
 
 const char *ft_specifier(const char *id, s_struct *f)
 {
