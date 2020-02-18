@@ -15,94 +15,6 @@ int		ft_empty(s_struct *f)
 	return (i);
 }
 
-int		ft_print2(char *s, s_struct *f, int len, int mode)
-{
-	int		i;
-
-	i = 0;
-
-	if (mode == 1 && f->precision < len && f->precision)
-		len = f->precision;
-	if (*s && mode == 1 && f->precision > 0 && f->width == 0)
-	{
-		write(1, s, len);
-		i += len;
-	}
-	else if (*s && f->precision != -1)
-	{
-		write(1, s, len);
-		i += len;
-	}
-	else if (f->precision == -1)
-		f->width = len;
-	while (f->width > 0)
-	{
-//		i += ft_char(f->pad);
-		f->width--;
-	}
-	return (i);
-}
-
-int		ft_print(char *s, s_struct *f, int mode)
-{
-	int		i;
-	int		len;
-
-	if (s == NULL && mode == 1)
-		s = "(null)";
-	else if (!s)
-		return (ft_empty(f));
-	len = ft_strlen(s);
-	i = 0;
-	ft_adjust(f, mode, len);
-	if (mode == 1 && (f->null == 1 || (f->handle == 1 && f->width == 0 &&
-			f->precision == 0)))
-		return (0);
-	if (f->width > 0)
-	{
-		if (len >= f->width && mode == 1 && f->handle == 1)
-		{
-			len = f->width; //le bug se produit ici !!!
-			f->width = 0;
-		}
-		else
-			f->width = (f->precision > 0 && mode == 1 ? len : f->width - len);
-	}
-//	f->pad = (f->zero == 1 ? '0' : ' ');
-	while (f->left != 1 && f->width > 0)
-	{
-//		i += ft_char(f->pad);
-		f->width--;
-	}
-	return (i + (ft_print2(s, f, len, mode)));
-}
-
-int		ft_integer2(unsigned int n, char *s, s_struct *f)
-{
-	int		i;
-
-	i = 0;
-	ft_adjust(f, 0, ft_ilen(n, 10));
-	while (n)
-	{
-		*--s = (n % 10) + '0';
-		n /= 10;
-	}
-	while (f->precision > ft_strlen(s) && ft_strlen(s) < f->width)
-		*--s = '0';
-	if (f->neg)
-	{
-		if (f->width && f->zero)
-		{
-			i += ft_putchar('-');
-			f->width--;
-		}
-		else
-			*--s = '-';
-	}
-	return (i + (ft_print(s, f, 0)));
-}
-
 int		ft_integer(int n, s_struct *f, int sign)
 {
 	char	buffer[4096];
@@ -161,14 +73,4 @@ int		ft_hex(uint64_t n, s_struct *f, int caps)
 	s = buffer + 4095;
 	*s = '\0';
 	return (ft_hex2(nb, s, f, caps));
-}
-
-int			ft_pointer(void *adr, s_struct *f)
-{
-	int		len;
-	int		i;
-
-	len = ft_ilen((uint64_t)adr, 16);
-	f->pointer = 2;
-	return (ft_hex((uint64_t)adr, f, 0) + 2);
 }
