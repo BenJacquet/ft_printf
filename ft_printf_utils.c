@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_utils2.c                                 :+:      :+:    :+:   */
+/*   ft_printf_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jabenjam <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jabenjam <jabenjam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 14:47:18 by jabenjam          #+#    #+#             */
-/*   Updated: 2019/11/18 19:43:48 by jabenjam         ###   ########.fr       */
+/*   Updated: 2020/02/18 15:01:30 by jabenjam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,18 +57,30 @@ char		*ft_toupper(char *str)
 	return (str);
 }
 
-int			ft_ilen(unsigned int n, int base)
+int			ft_ilen(unsigned int nb, int base)
 {
-	int64_t		len;
-	int64_t		nb;
+	unsigned int	len;
 
 	len = 0;
-	if (n < 0)
+	if (nb < 0)
 		len++;
-	nb = ft_abs(n);
+	nb = ft_abs(nb);
 	while (nb > base)
 	{
-		nb = nb / base;
+		nb /= base;
+		len++;
+	}
+	return (len + 1);
+}
+
+int			ft_ulllen(unsigned long long nb, int base)
+{
+	unsigned int	len;
+
+	len = 0;
+	while (nb > base)
+	{
+		nb /= base;
 		len++;
 	}
 	return (len + 1);
@@ -114,20 +126,4 @@ char		*ft_strrev(char *str)
 	}
 	str[i] = '\0';
 	return (str);
-}
-
-int		ft_atoi(const char *str)
-{
-	size_t				result;
-	int					sign;
-
-	result = 0;
-	sign = 1;
-	while (ft_isspace(*str))
-		str++;
-	if (*str == '-' || *str == '+')
-		sign = *str == '-' ? -1 : 1;
-	while (*str >= '0' && *str <= '9')
-		result = (result * 10) + (*str++ - 48);
-	return (result * sign);
 }

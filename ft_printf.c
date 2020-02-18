@@ -6,14 +6,13 @@
 /*   By: jabenjam <jabenjam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 14:14:13 by jabenjam          #+#    #+#             */
-/*   Updated: 2019/11/19 16:25:02 by jabenjam         ###   ########.fr       */
+/*   Updated: 2020/02/18 15:08:03 by jabenjam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 //#include "ft_printf_utils.c"
 #include "ft_printf_display.c"
-#include "ft_printf_utils2.c"
 
 void	ft_test_struct(s_struct *f)
 {
@@ -55,7 +54,7 @@ const char *ft_precision(const char *id, va_list va_lst, s_struct *f)
 			f->precision = (f->precision < 0 ? 0 : f->precision);
 			id++;
 		}
-		if (f->precision)
+		if (f->precision > 0)
 			 f->zero = 0; // si il y a une precision on ignore le flag zero
 	}
 	return (ft_specifier(id, f));
@@ -105,13 +104,13 @@ int ft_select(va_list va_lst, s_struct *f)
 	else if (f->specifier == 'p')
 		ft_pointer((void *)va_arg(va_lst, unsigned long long), f);
 	else if (f->specifier == 'd' || f->specifier == 'i')
-		ft_integer(va_arg(va_lst, int), f, 1);
+		ft_int(va_arg(va_lst, int), f);
 	else if (f->specifier == 'u')
-		ft_uinteger(va_arg(va_lst, int), f, 0);
+		ft_uint(va_arg(va_lst, unsigned int), f);
 	else if (f->specifier == 'x')
-		ft_hex(va_arg(va_lst, unsigned int), f, 0);
+		ft_uint(va_arg(va_lst, unsigned int), f);
 	else if (f->specifier == 'X')
-		ft_hex(va_arg(va_lst, unsigned int), f, 1);
+		ft_hex(va_arg(va_lst, unsigned int), f);
 	else if (f->specifier == '%')
 		f->count += ft_putchar('%');
 	return (0);
@@ -141,13 +140,11 @@ int ft_process(const char *format, va_list va_lst, s_struct *f)
 		else
 		{
 			format = ft_flag(++format, va_lst, f);
-//			ft_test_struct(f);
 			ft_select(va_lst, f);
 			count += f->count;
 			ft_initialize(f);
 		}
 	}
-	// implementer affichage du buffer et ajout de count += strlen(buffer)
 	return (count);
 }
 
