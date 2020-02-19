@@ -1,22 +1,24 @@
 NAME = libftprintf.a
 
-SRC = ft_printf_core.c\
-	ft_printf_parsing.c\
-	ft_printf_char_string.c\
-	ft_printf_pointer.c\
-	ft_printf_int.c\
-	ft_printf_uint_hex.c\
-	ft_printf_width.c\
-	ft_printf_utils.c\
-	ft_printf_length.c\
-	ft_printf_conversions.c\
-	ft_printf_display.c\
+SRC = ft_printf.c\
+	src/ft_printf_parsing.c\
+	src/ft_printf_char_string.c\
+	src/ft_printf_pointer.c\
+	src/ft_printf_int.c\
+	src/ft_printf_uint_hex.c\
+	src/ft_printf_width.c\
+	src/ft_printf_utils.c\
+	src/ft_printf_length.c\
+	src/ft_printf_conversions.c\
+	src/ft_printf_display.c\
 
 OBJ = $(SRC:.c=.o)
 
-INC = ft_printf.h
+INC = -I /inc/
 
-CC = gcc -Wall -Werror -Wextra
+CC = gcc
+
+CFLAGS = -c -Wall -Werror -Wextra
 
 
 $(NAME) : $(OBJ)
