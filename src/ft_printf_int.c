@@ -6,7 +6,7 @@
 /*   By: jabenjam <jabenjam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 14:14:27 by jabenjam          #+#    #+#             */
-/*   Updated: 2020/02/19 15:32:40 by jabenjam         ###   ########.fr       */
+/*   Updated: 2020/02/19 15:44:07 by jabenjam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void		ft_int_next(char *buffer, t_data *f, int sign)
 {
 	if (f->left)
 		ft_padding_int(buffer, f, sign);
-	if (f->precision >= 0 && (size_t)f->precision < f->len)
+	if (f->precision >= 0 && f->precision < f->len)
 		f->precision = f->len;
 	if (f->precision >= 0)
 	{

@@ -6,7 +6,7 @@
 /*   By: jabenjam <jabenjam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 14:14:45 by jabenjam          #+#    #+#             */
-/*   Updated: 2020/02/19 15:33:02 by jabenjam         ###   ########.fr       */
+/*   Updated: 2020/02/19 15:43:43 by jabenjam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	ft_uint_next(char *buffer, t_data *f)
 {
 	if (f->left)
 		ft_padding_uint(buffer, f);
-	if (f->precision >= 0 && (size_t)f->precision < f->len)
+	if (f->precision >= 0 && f->precision < f->len)
 		f->precision = f->len;
 	if (f->precision >= 0)
 	{
