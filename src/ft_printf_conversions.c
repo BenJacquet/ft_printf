@@ -28,17 +28,18 @@ int			ft_atoi(const char *str)
 	return (result * sign);
 }
 
-char		*ft_itoa(int nb)
+char	*ft_itoa(int n)
 {
-	char	*nbr;
-	int		i;
-	int		sign;
+	char			*nbr;
+	int				i;
+	int				sign;
+	unsigned int	nb;
 
 	i = 0;
-	if (!(nbr = malloc(sizeof(char) * (ft_ilen(nb, 10) + 1))))
+	if (!(nbr = malloc(sizeof(char) * (ft_ilen(n, 10) + 1))))
 		return (0);
-	sign = (nb < 0 ? 1 : 0);
-	nb = ft_abs(nb);
+	sign = n < 0 ? 1 : 0;
+	nb = ft_abs(n);
 	while (nb >= 10)
 	{
 		nbr[i++] = nb % 10 + '0';
@@ -48,7 +49,6 @@ char		*ft_itoa(int nb)
 	if (sign)
 		nbr[i++] = '-';
 	nbr[i] = '\0';
-	printf("%s\n", nbr);
 	return (ft_strrev(nbr));
 }
 
@@ -58,7 +58,7 @@ char		*ft_uitoa(unsigned int nb)
 	int		i;
 
 	i = 0;
-	if (!(buffer = malloc(sizeof(char) * (ft_ilen(nb, 10) + 1))))
+	if (!(buffer = malloc(sizeof(char) * (ft_uilen(nb, 10) + 1))))
 		return (0);
 	while (nb >= 10)
 	{
@@ -85,7 +85,7 @@ char		*ft_uitoa_base(unsigned int nb)
 		buffer[i++] = hex[(nb % 16)];
 		nb /= 16;
 	}
-	buffer[i++] = nb % 16 + '0';
+	buffer[i++] = hex[(nb % 16)];
 	buffer[i] = '\0';
 	return (ft_strrev(buffer));
 }
@@ -105,7 +105,7 @@ char		*ft_ulltoa_base(unsigned long long nb)
 		buffer[i++] = hex[(nb % 16)];
 		nb /= 16;
 	}
-	buffer[i++] = nb % 16 + '0';
+	buffer[i++] = hex[(nb % 16)];
 	buffer[i] = '\0';
 	return (ft_strrev(buffer));
 }

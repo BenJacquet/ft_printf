@@ -10,6 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../inc/ft_printf.h"
+
 int			ft_abs(int n)
 {
 	return (n < 0 ? -n : n);
@@ -45,22 +47,20 @@ char		*ft_toupper(char *str)
 	return (str);
 }
 
-char		*ft_strrev(char *str)
+char	*ft_strrev(char *str)
 {
-	int		i;
-	int		len;
-	char	tmp;
+	int beg;
+	int end;
+	int tmp;
 
-	len = 0;
-	while (str[len])
-		len += 1;
-	i = -1;
-	while (++i < --len)
+	beg = 0;
+	end = ft_strlen(str);
+	while (beg < (end / 2))
 	{
-		tmp = str[i];
-		str[i] = str[len];
-		str[len] = tmp;
+		tmp = str[end - 1 - beg];
+		str[end - 1 - beg] = str[beg];
+		str[beg] = tmp;
+		beg++;
 	}
-	str[i] = '\0';
 	return (str);
 }

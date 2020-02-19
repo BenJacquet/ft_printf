@@ -21,7 +21,7 @@
 
 void	ft_padding_str(char *str, t_data *f)
 {
-	if (f->pointer)
+	if (f->specifier == 'p')
 		ft_putstr_mod("0x", f, 0);
 	if (f->precision >= 0)
 	{
