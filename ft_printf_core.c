@@ -6,13 +6,11 @@
 /*   By: jabenjam <jabenjam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 14:14:13 by jabenjam          #+#    #+#             */
-/*   Updated: 2020/02/18 17:00:22 by jabenjam         ###   ########.fr       */
+/*   Updated: 2020/02/19 11:57:20 by jabenjam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include "ft_printf_utils.c"
-#include "ft_printf_display.c"
 
 int			ft_select(va_list va_lst, t_data *f)
 {
@@ -35,7 +33,7 @@ int			ft_select(va_list va_lst, t_data *f)
 	return (0);
 }
 
-void 		t_initialize(t_data *f)
+void		t_initialize(t_data *f)
 {
 	f->specifier = 0;
 	f->width = 0;
@@ -67,7 +65,7 @@ int			ft_process(const char *format, va_list va_lst, t_data *f)
 	return (count);
 }
 
-int 		ft_printf(const char *format, ...)
+int			ft_printf(const char *format, ...)
 {
 	va_list	va_lst;
 	t_data	f;

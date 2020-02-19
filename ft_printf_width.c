@@ -6,7 +6,7 @@
 /*   By: jabenjam <jabenjam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 14:15:07 by jabenjam          #+#    #+#             */
-/*   Updated: 2020/02/18 16:51:18 by jabenjam         ###   ########.fr       */
+/*   Updated: 2020/02/19 11:52:32 by jabenjam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 ** Mode = 1 : On utilise la precision
 ** CP : Si "%p" = on compte deux char de moins pour le "0x"
 */
+
 void	ft_width(t_data *f, int mode)
 {
 	int	limit;

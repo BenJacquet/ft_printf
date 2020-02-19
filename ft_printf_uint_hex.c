@@ -6,7 +6,7 @@
 /*   By: jabenjam <jabenjam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 14:14:45 by jabenjam          #+#    #+#             */
-/*   Updated: 2020/02/18 16:49:17 by jabenjam         ###   ########.fr       */
+/*   Updated: 2020/02/19 11:58:17 by jabenjam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	ft_uint_next(char *buffer, t_data *f)
 {
 	if (f->left)
 		ft_padding_uint(buffer, f);
-	if (f->precision >= 0 && f->precision < f->len) // si ça ne marche pas changer f->precision en size_t
+	if (f->precision >= 0 && f->precision < f->len)
 		f->precision = f->len;
 	if (f->precision >= 0)
 	{
@@ -43,16 +43,25 @@ void	ft_uint_next(char *buffer, t_data *f)
 /*
 ** CP : Si nb = 0 et aucune precision on print la largeur si il y en a une
 */
+
 void	ft_uint_hex(unsigned int nb, t_data *f)
 {
 	char	*buffer;
 
-	nb = (unsigned int)(nb + 429496725 + 1); // tester sans addition
+	nb = (unsigned int)(nb + 429496725 + 1);
 	if (!f->precision && !nb)
 		return (ft_width(f, 0));
-	buffer = (f->specifier == 'u' ? ft_uitoa(nb) : ft_uitoa_base((unsigned int)nb));
-	buffer = (f->specifier == 'X' ? ft_toupper(buffer): buffer);
+	if (f->specifier == 'u')
+		ft_uitoa(nb);
+	else
+		ft_uitoa_base((unsigned int)nb);
+	buffer = (f->specifier == 'X' ? ft_toupper(buffer) : buffer);
 	f->len = ft_strlen(buffer);
 	ft_uint_next(buffer, f);
 	free(buffer);
 }
+
+/*
+** (ligne 30) : si ça ne marche pas changer f->precision en size_t
+** (ligne 51) : tester sans addition
+*/

@@ -6,7 +6,7 @@
 /*   By: jabenjam <jabenjam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 14:14:09 by jabenjam          #+#    #+#             */
-/*   Updated: 2020/02/18 16:50:16 by jabenjam         ###   ########.fr       */
+/*   Updated: 2020/02/19 11:39:40 by jabenjam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 **		Sinon on utilise la len pour print
 ** CP : Si il n'y a aucune precision on utilise la len
 */
+
 void	ft_padding_str(char *str, t_data *f)
 {
 	if (f->pointer)
@@ -35,6 +36,7 @@ void	ft_padding_str(char *str, t_data *f)
 ** CP : Si il y a une precision et qu'elle est superieure a len
 **		On la remplace par cette derniere
 */
+
 void	ft_string(char *str, t_data *f)
 {
 	if (!str)

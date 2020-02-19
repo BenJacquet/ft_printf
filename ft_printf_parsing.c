@@ -6,7 +6,7 @@
 /*   By: jabenjam <jabenjam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 16:51:47 by jabenjam          #+#    #+#             */
-/*   Updated: 2020/02/18 16:52:20 by jabenjam         ###   ########.fr       */
+/*   Updated: 2020/02/19 11:49:23 by jabenjam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 /*
 ** Recuperation du specifier
 */
+
 const char	*ft_get_specifier(const char *id, t_data *f)
 {
 	if ((*id == 'c') || (*id == 's') || (*id == 'p') ||
@@ -31,6 +32,7 @@ const char	*ft_get_specifier(const char *id, t_data *f)
 ** Recuperation de la precision
 ** si il y a une precision on ignore le flag "zero"
 */
+
 const char	*ft__get_precision(const char *id, va_list va_lst, t_data *f)
 {
 	if (*id == '.')
@@ -58,6 +60,7 @@ const char	*ft__get_precision(const char *id, va_list va_lst, t_data *f)
 ** Recuperation de la largeur
 ** si la largeur est negative on active le flag "left"
 */
+
 const char	*ft_get_width(const char *id, va_list va_lst, t_data *f)
 {
 	if (ft_isdigit(*id))
@@ -81,6 +84,7 @@ const char	*ft_get_width(const char *id, va_list va_lst, t_data *f)
 /*
 ** Recuperation des flags "zero" et "left"
 */
+
 const char	*ft_get_flag(const char *id, va_list va_lst, t_data *f)
 {
 	if (*id == '0')

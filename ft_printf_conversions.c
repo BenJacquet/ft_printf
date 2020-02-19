@@ -6,7 +6,7 @@
 /*   By: jabenjam <jabenjam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 14:13:36 by jabenjam          #+#    #+#             */
-/*   Updated: 2020/02/18 16:47:42 by jabenjam         ###   ########.fr       */
+/*   Updated: 2020/02/19 11:54:18 by jabenjam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ char		*ft_uitoa(unsigned int nb)
 char		*ft_uitoa_base(unsigned int nb)
 {
 	char	*hex;
-	char   	*buffer;
+	chars	*buffer;
 	int		i;
 
 	i = 0;
@@ -92,7 +92,7 @@ char		*ft_uitoa_base(unsigned int nb)
 char		*ft_ulltoa_base(unsigned long long nb)
 {
 	char	*hex;
-	char    *buffer;
+	char	*buffer;
 	int		i;
 
 	i = 0;

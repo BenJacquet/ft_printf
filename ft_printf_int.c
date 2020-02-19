@@ -6,7 +6,7 @@
 /*   By: jabenjam <jabenjam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 14:14:27 by jabenjam          #+#    #+#             */
-/*   Updated: 2020/02/18 16:43:24 by jabenjam         ###   ########.fr       */
+/*   Updated: 2020/02/19 11:53:25 by jabenjam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void		ft_int_next(char *buffer, t_data *f, int sign)
 {
 	if (f->left)
 		ft_padding_int(buffer, f, sign);
-	if (f->precision >= 0 && f->precision < f->len) // si ça ne marche pas changer f->precision en size_t
+	if (f->precision >= 0 && f->precision < f->len)
 		f->precision = f->len;
 	if (f->precision >= 0)
 	{
@@ -45,6 +45,7 @@ void		ft_int_next(char *buffer, t_data *f, int sign)
 /*
 ** CP : Si nb = 0 et aucune precision on print la largeur si il y en a une
 */
+
 void		ft_int(int nb, t_data *f)
 {
 	char	*buffer;
@@ -59,10 +60,15 @@ void		ft_int(int nb, t_data *f)
 			ft_putstr_mod("-", f, 0);
 		nb = ft_abs(nb);
 		f->zero = 1;
-		f->width--; // modifier ici si il y a un bug
+		f->width--;
 	}
 	buffer = ft_itoa(nb);
 	f->len = ft_strlen(buffer);
 	ft_int_next(buffer, f, sign);
 	free(buffer);
 }
+
+/*
+** (ligne 32) : si ça ne marche pas changer f->precision en size_t
+** (ligne 63) : modifier "f->width--"  si il y a un bug
+*/

@@ -6,7 +6,7 @@
 /*   By: jabenjam <jabenjam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 12:45:30 by jabenjam          #+#    #+#             */
-/*   Updated: 2020/02/18 17:19:36 by jabenjam         ###   ########.fr       */
+/*   Updated: 2020/02/19 11:52:44 by jabenjam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ typedef struct	s_struct
 }				t_data;
 
 /*
-**------CORE FUNCTIONS---------------------------------------------------------
+**------CORE FUNCTIONS----------------------------------------------------
 */
 
 int				ft_select(va_list va_lst, t_data *f);
@@ -41,7 +41,7 @@ int				ft_process(const char *format, va_list va_lst, t_data *f);
 int				ft_printf(const char *format, ...);
 
 /*
-**------SPECIFIER FUNCTIONS----------------------------------------------------
+**------SPECIFIER FUNCTIONS------------------------------------------------
 */
 
 void			ft_char(int c, t_data *f);
@@ -57,16 +57,16 @@ void			ft_padding_uint_hex(char *buffer, t_data *f);
 void			ft_width(t_data *f, int mode);
 
 /*
-**------PARSING FUNCTIONS----------------------------------------------------
+**------PARSING FUNCTIONS------------------------------------------------
 */
 
 const char		*ft_get_specifier(const char *id, t_data *f);
 const char		*ft_get_precision(const char *id, va_list va_lst, t_data *f);
-const char 		*ft_get_width(const char *id, va_list va_lst, t_data *f);
+const char		*ft_get_width(const char *id, va_list va_lst, t_data *f);
 const char		*ft_get_flag(const char *id, va_list va_lst, t_data *f);
 
 /*
-**------CONVERSION FUNCTIONS---------------------------------------------------
+**------CONVERSION FUNCTIONS-----------------------------------------------
 */
 
 int				ft_atoi(const char *str);
@@ -78,22 +78,24 @@ char			*ft_toupper(char *str);
 char			*ft_strrev(char *str);
 
 /*
-**------LENGTH FUNCTIONS-------------------------------------------------------
+**------LENGTH FUNCTIONS----------------------------------------------------
 */
+
 int				ft_strlen(char *str);
 int				ft_ilen(unsigned int nb, int base);
 int				ft_ulllen(unsigned long long nb, int base);
 
 /*
-**------DETECTOR FUNCTIONS------------------------------------------------------
+**------DETECTOR FUNCTIONS---------------------------------------------------
 */
+
 int				ft_isspace(int c);
 int				ft_isdigit(int c);
 
-
 /*
-**------PRINT FUNCTIONS----------------------------------------------------------
+**------PRINT FUNCTIONS-------------------------------------------------------
 */
+
 int				ft_putchar(char c);
 void			ft_putstr_mod(char *str, t_data *f, int mode);
 

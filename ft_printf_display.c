@@ -6,7 +6,7 @@
 /*   By: jabenjam <jabenjam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 14:14:18 by jabenjam          #+#    #+#             */
-/*   Updated: 2020/02/18 17:17:35 by jabenjam         ###   ########.fr       */
+/*   Updated: 2020/02/19 11:40:20 by jabenjam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int			ft_putchar(char c)
 ** Mode = 0 : On utilise la len
 ** Mode = 1 : On utilise la precision
 */
+
 void		ft_putstr_mod(char *str, t_data *f, int mode)
 {
 	int		limit;
