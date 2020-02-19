@@ -12,7 +12,7 @@
 
 #include "./inc/ft_printf.h"
 
-int			ft_select(va_list va_lst, t_data *f)
+void		ft_select(va_list va_lst, t_data *f)
 {
 	if (f->specifier == 'c')
 		ft_char(va_arg(va_lst, int), f);
@@ -30,7 +30,6 @@ int			ft_select(va_list va_lst, t_data *f)
 		ft_uint_hex(va_arg(va_lst, unsigned int), f);
 	else if (f->specifier == '%')
 		f->count += ft_putchar('%');
-	return (0);
 }
 
 void		ft_initialize(t_data *f)

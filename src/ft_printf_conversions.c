@@ -15,17 +15,15 @@
 int			ft_atoi(const char *str)
 {
 	unsigned int		result;
-	int					sign;
+	int					i;
 
 	result = 0;
-	sign = 1;
-	while (ft_isspace(*str))
-		str++;
-	if (*str == '-' || *str == '+')
-		sign = *str == '-' ? -1 : 1;
-	while (*str >= '0' && *str <= '9')
-		result = (result * 10) + (*str++ - 48);
-	return (result * sign);
+	i = 0;
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		result = (result * 10) + (str[i++] - '0');
+	}
+	return (result);
 }
 
 char	*ft_itoa(int n)

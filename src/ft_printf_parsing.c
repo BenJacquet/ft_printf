@@ -66,7 +66,8 @@ int		ft_get_width(const char *id, va_list va_lst, t_data *f, int i)
 	if (ft_isdigit(id[i]))
 	{
 		f->width = ft_atoi(id + i);
-		i += ft_ilen(f->width, 10);
+		while (ft_isdigit(id[i]))
+			i++;
 	}
 	else if (id[i] == '*')
 	{

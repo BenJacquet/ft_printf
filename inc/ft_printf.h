@@ -31,14 +31,11 @@ typedef struct	s_struct
 	int			count;
 }				t_data;
 
-
-void			ft_test_struct(t_data *f);
-
 /*
 **------CORE FUNCTIONS----------------------------------------------------
 */
 
-int				ft_select(va_list va_lst, t_data *f);
+void			ft_select(va_list va_lst, t_data *f);
 void			ft_initialize(t_data *f);
 int				ft_process(const char *format, va_list va_lst);
 int				ft_printf(const char *format, ...);
