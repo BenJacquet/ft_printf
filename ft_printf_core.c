@@ -6,7 +6,7 @@
 /*   By: jabenjam <jabenjam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 14:14:13 by jabenjam          #+#    #+#             */
-/*   Updated: 2020/02/19 11:57:20 by jabenjam         ###   ########.fr       */
+/*   Updated: 2020/02/19 12:08:07 by jabenjam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,15 @@ int			ft_select(va_list va_lst, t_data *f)
 	else if (f->specifier == 's')
 		ft_string(va_arg(va_lst, char *), f);
 	else if (f->specifier == 'p')
-		ft_pointer((void *)va_arg(va_lst, unsigned long long), f);
+		ft_pointer(va_arg(va_lst, unsigned long long), f);
 	else if (f->specifier == 'd' || f->specifier == 'i')
 		ft_int(va_arg(va_lst, int), f);
 	else if (f->specifier == 'u')
-		ft_uint(va_arg(va_lst, unsigned int), f);
+		ft_uint_hex(va_arg(va_lst, unsigned int), f);
 	else if (f->specifier == 'x')
-		ft_uint(va_arg(va_lst, unsigned int), f);
+		ft_uint_hex(va_arg(va_lst, unsigned int), f);
 	else if (f->specifier == 'X')
-		ft_hex(va_arg(va_lst, unsigned int), f);
+		ft_uint_hex(va_arg(va_lst, unsigned int), f);
 	else if (f->specifier == '%')
 		f->count += ft_putchar('%');
 	return (0);

@@ -6,9 +6,11 @@
 /*   By: jabenjam <jabenjam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 15:58:28 by jabenjam          #+#    #+#             */
-/*   Updated: 2020/02/19 11:47:48 by jabenjam         ###   ########.fr       */
+/*   Updated: 2020/02/19 12:16:07 by jabenjam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "ft_printf.h"
 
 int					ft_strlen(char *str)
 {
@@ -20,7 +22,7 @@ int					ft_strlen(char *str)
 	return (len);
 }
 
-int					ft_ilen(unsigned int nb, int base)
+int					ft_ilen(int nb, int base)
 {
 	unsigned int	len;
 
@@ -36,7 +38,23 @@ int					ft_ilen(unsigned int nb, int base)
 	return (len + 1);
 }
 
-int					ft_ulllen(unsigned long long nb, int base)
+int					ft_uilen(unsigned int nb, unsigned int base)
+{
+	unsigned int	len;
+
+	len = 0;
+	if (nb < 0)
+		len++;
+	nb = ft_abs(nb);
+	while (nb > base)
+	{
+		nb /= base;
+		len++;
+	}
+	return (len + 1);
+}
+
+int					ft_ulllen(unsigned long long nb, unsigned int base)
 {
 	unsigned int	len;
 
