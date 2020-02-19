@@ -6,7 +6,7 @@
 /*   By: jabenjam <jabenjam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 14:13:36 by jabenjam          #+#    #+#             */
-/*   Updated: 2020/02/19 13:50:23 by jabenjam         ###   ########.fr       */
+/*   Updated: 2020/02/19 16:08:58 by jabenjam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ char		*ft_itoa(int nb)
 	if (sign)
 		nbr[i++] = '-';
 	nbr[i] = '\0';
+	printf("%s\n", nbr);
 	return (ft_strrev(nbr));
 }
 

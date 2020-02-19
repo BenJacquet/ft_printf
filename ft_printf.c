@@ -6,11 +6,24 @@
 /*   By: jabenjam <jabenjam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 14:14:13 by jabenjam          #+#    #+#             */
-/*   Updated: 2020/02/19 15:05:55 by jabenjam         ###   ########.fr       */
+/*   Updated: 2020/02/19 15:56:29 by jabenjam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./inc/ft_printf.h"
+
+void		ft_test_struct(t_data *f)
+{
+	printf("---------------------\n");
+	printf("specifier = %c\n", f->specifier);
+	printf("precision = %d\n", f->precision);
+	printf("left = %d\n", f->left);
+	printf("pointer = %d\n", f->pointer);
+	printf("zero = %d\n", f->zero);
+	printf("count = %d\n", f->count);
+	printf("len = %d\n", f->len);
+	printf("---------------------\n");
+}
 
 int			ft_select(va_list va_lst, t_data *f)
 {
@@ -61,6 +74,7 @@ int			ft_process(const char *format, va_list va_lst)
 		else
 		{
 			i = ft_get_flag(format, va_lst, &f, ++i);
+			ft_test_struct(&f);
 			ft_select(va_lst, &f);
 			count += f.count;
 		}

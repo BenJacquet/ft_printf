@@ -6,7 +6,7 @@
 /*   By: jabenjam <jabenjam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 12:45:30 by jabenjam          #+#    #+#             */
-/*   Updated: 2020/02/19 15:23:51 by jabenjam         ###   ########.fr       */
+/*   Updated: 2020/02/19 15:52:21 by jabenjam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,9 @@ typedef struct	s_struct
 	int			len;
 	int			count;
 }				t_data;
+
+
+void			ft_test_struct(t_data *f);
 
 /*
 **------CORE FUNCTIONS----------------------------------------------------
