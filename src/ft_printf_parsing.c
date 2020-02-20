@@ -6,7 +6,7 @@
 /*   By: jabenjam <jabenjam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 16:51:47 by jabenjam          #+#    #+#             */
-/*   Updated: 2020/02/20 15:04:08 by jabenjam         ###   ########.fr       */
+/*   Updated: 2020/02/20 17:50:11 by jabenjam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,21 +83,37 @@ int		ft_get_width(const char *id, va_list va_lst, t_data *f, int i)
 	return (ft_get_precision(id, va_lst, f, i));
 }
 
+int		ft_get_space(char c, t_data *f)
+{
+	if (c == ' ')
+	{
+		f->space = 1;
+		return (1);
+	}
+	return (0);
+}
+
 /*
 ** Recuperation des flags "zero" et "left"
 */
 
 int		ft_get_flag(const char *id, va_list va_lst, t_data *f, int i)
 {
+	if (ft_get_space(id[i], f))
+		i++;
 	if (id[i] == '0')
 	{
 		f->zero = 1;
 		i++;
 	}
+	if (ft_get_space(id[i], f))
+		i++;
 	if (id[i] == '-')
 	{
 		f->left = 1;
 		i++;
 	}
+	if (ft_get_space(id[i], f))
+		i++;
 	return (ft_get_width(id, va_lst, f, i));
 }

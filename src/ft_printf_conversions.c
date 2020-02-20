@@ -6,7 +6,7 @@
 /*   By: jabenjam <jabenjam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 14:13:36 by jabenjam          #+#    #+#             */
-/*   Updated: 2020/02/20 15:45:52 by jabenjam         ###   ########.fr       */
+/*   Updated: 2020/02/20 17:41:21 by jabenjam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ char	*ft_itoa(int n)
 		return (0);
 	sign = n < 0 ? 1 : 0;
 	nb = ft_abs(n);
+	if (n == 0)
+		nbr[0] = '0';
 	while (nb >= 10)
 	{
 		nbr[i++] = nb % 10 + '0';

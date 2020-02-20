@@ -6,7 +6,7 @@
 /*   By: jabenjam <jabenjam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 14:14:27 by jabenjam          #+#    #+#             */
-/*   Updated: 2020/02/20 15:51:17 by jabenjam         ###   ########.fr       */
+/*   Updated: 2020/02/20 18:09:17 by jabenjam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ void		ft_int(int nb, t_data *f)
 	int		sign;
 
 	sign = (nb < 0 ? 1 : 0);
+	if (f->space && (!sign || f->width == 0|| f->precision == -1))
+		f->count += ft_putchar(' ');
 	if (!f->precision && !nb && f->width)
 		return (ft_width(f, 0));
 	if (nb < 0 && (f->precision >= 0 || f->zero))

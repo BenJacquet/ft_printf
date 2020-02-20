@@ -6,7 +6,7 @@
 /*   By: jabenjam <jabenjam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 12:45:30 by jabenjam          #+#    #+#             */
-/*   Updated: 2020/02/20 15:05:30 by jabenjam         ###   ########.fr       */
+/*   Updated: 2020/02/20 17:52:27 by jabenjam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ typedef struct	s_struct
 	int			specifier;
 	int			width;
 	int			precision;
+	int			space;
 	int			left;
 	int			zero;
 	int			pointer;
@@ -65,6 +66,7 @@ int				ft_get_specifier(const char *id, t_data *f, int i);
 int				ft_get_precision(const char *id, va_list va_lst, t_data *f, int i);
 int				ft_get_width(const char *id, va_list va_lst, t_data *f, int i);
 int				ft_get_flag(const char *id, va_list va_lst, t_data *f, int i);
+int				ft_get_space(char c, t_data *f);
 
 /*
 **------CONVERSION FUNCTIONS-----------------------------------------------

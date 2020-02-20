@@ -6,7 +6,7 @@
 /*   By: jabenjam <jabenjam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 14:14:13 by jabenjam          #+#    #+#             */
-/*   Updated: 2020/02/20 13:04:53 by jabenjam         ###   ########.fr       */
+/*   Updated: 2020/02/20 17:54:59 by jabenjam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ void		ft_initialize(t_data *f)
 	f->specifier = 0;
 	f->width = 0;
 	f->precision = -1;
+	f->space = 0;
 	f->left = 0;
 	f->pointer = 0;
 	f->zero = 0;
