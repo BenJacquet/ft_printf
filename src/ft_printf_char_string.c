@@ -6,7 +6,7 @@
 /*   By: jabenjam <jabenjam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 14:14:09 by jabenjam          #+#    #+#             */
-/*   Updated: 2020/02/19 15:24:34 by jabenjam         ###   ########.fr       */
+/*   Updated: 2020/02/20 15:00:52 by jabenjam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@
 
 void	ft_padding_str(char *str, t_data *f)
 {
-	if (f->specifier == 'p')
-		ft_putstr_mod("0x", f, 0);
 	if (f->precision >= 0)
 	{
 		ft_width(f, 0);
@@ -56,6 +54,7 @@ void	ft_string(char *str, t_data *f)
 
 void	ft_char(int c, t_data *f)
 {
+	f->len = 1;
 	if (f->left)
 		ft_putchar(c);
 	ft_width(f, 0);

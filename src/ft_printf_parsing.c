@@ -6,7 +6,7 @@
 /*   By: jabenjam <jabenjam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 16:51:47 by jabenjam          #+#    #+#             */
-/*   Updated: 2020/02/19 15:04:16 by jabenjam         ###   ########.fr       */
+/*   Updated: 2020/02/20 15:04:08 by jabenjam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ int		ft_get_precision(const char *id, va_list va_lst, t_data *f, int i)
 		if (ft_isdigit(id[i]))
 		{
 			f->precision = ft_atoi(id + i);
-			i += ft_ilen(f->width, 10);
+			while (ft_isdigit(id[i]))
+				i++;
 		}
 		else if (id[i] == '*')
 		{

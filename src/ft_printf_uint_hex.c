@@ -6,7 +6,7 @@
 /*   By: jabenjam <jabenjam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 14:14:45 by jabenjam          #+#    #+#             */
-/*   Updated: 2020/02/19 15:43:43 by jabenjam         ###   ########.fr       */
+/*   Updated: 2020/02/20 13:00:25 by jabenjam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_padding_uint(char *buffer, t_data *f)
 	if (f->precision >= 0)
 	{
 		f->zero = 1;
-		f->width = f->precision - 1;
+		f->width = f->precision;
 		ft_width(f, 0);
 	}
 	ft_putstr_mod(buffer, f, 0);
@@ -48,7 +48,7 @@ void	ft_uint_hex(unsigned int nb, t_data *f)
 {
 	char	*buffer;
 
-	nb = (unsigned int)(nb + 429496725 + 1);
+	nb += (4294967295 + 1);
 	if (!f->precision && !nb)
 		return (ft_width(f, 0));
 	if (f->specifier == 'u')

@@ -6,7 +6,7 @@
 /*   By: jabenjam <jabenjam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 12:45:30 by jabenjam          #+#    #+#             */
-/*   Updated: 2020/02/19 15:52:21 by jabenjam         ###   ########.fr       */
+/*   Updated: 2020/02/20 15:05:30 by jabenjam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ void			ft_char(int c, t_data *f);
 void			ft_string(char *str, t_data *f);
 void			ft_padding_str(char *str, t_data *f);
 void			ft_pointer(unsigned long long pointer, t_data *f);
+void			ft_padding_pointer(char *str, t_data *f);
 void			ft_int(int nb, t_data *f);
 void			ft_int_next(char *buffer, t_data *f, int sign);
 void			ft_padding_int(char *buffer, t_data *f, int sign);
