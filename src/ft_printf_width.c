@@ -18,19 +18,12 @@
 ** CP : Si "%p" = on compte deux char de moins pour le "0x"
 */
 
-void	ft_width(t_data *f, int mode)
+void	ft_width(t_data *f ,int max, int limiter, char pad)
 {
-	int	limit;
-
-	limit = (mode == 1 ? f->precision : f->len);
-	limit += (f->pointer == 1 ? 2 : 0);
-	while (f->width - limit > 0)
+	while (max - limiter > 0)
 	{
-		if (f->zero)
-			ft_putchar('0');
-		else
-			ft_putchar(' ');
-		f->width--;
+		ft_putchar(pad);
+		max--;
 		f->count++;
 	}
 }

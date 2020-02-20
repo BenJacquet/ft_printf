@@ -17,11 +17,7 @@ void		ft_padding_int(char *buffer, t_data *f, int sign)
 	if (sign == 1 && f->precision >= 0)
 		f->count += ft_putchar('-');
 	if (f->precision >= 0)
-	{
-		f->zero = 1;
-		f->width = f->precision;
-		ft_width(f, 0);
-	}
+		ft_width(f, f->precision - 1, f->len - 1, '0');
 	ft_putstr_mod(buffer, f, 0);
 }
 
@@ -34,10 +30,10 @@ void		ft_int_next(char *buffer, t_data *f, int sign)
 	if (f->precision >= 0)
 	{
 		f->width -= f->precision;
-		ft_width(f, 1);
+		ft_width(f, f->width, 0, ' ');
 	}
 	else
-		ft_width(f, 0);
+		ft_width(f, f->width, f->len, f->zero);
 	if (!f->left)
 		ft_padding_int(buffer, f, sign);
 }
@@ -55,7 +51,7 @@ void		ft_int(int nb, t_data *f)
 	if (f->space && (!sign || f->width == 0|| f->precision == -1))
 		f->count += ft_putchar(' ');
 	if (!f->precision && !nb && f->width)
-		return (ft_width(f, 0));
+		return (ft_width(f, f->width, 0, ' '));
 	if (nb < 0 && (f->precision >= 0 || f->zero))
 	{
 		if (f->zero && f->precision == -1)

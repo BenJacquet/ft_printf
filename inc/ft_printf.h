@@ -56,7 +56,7 @@ void			ft_padding_int(char *buffer, t_data *f, int sign);
 void			ft_uint_hex(unsigned int nb, t_data *f);
 void			ft_uint_hex_next(char *buffer, t_data *f);
 void			ft_padding_uint_hex(char *buffer, t_data *f);
-void			ft_width(t_data *f, int mode);
+void			ft_width(t_data *f, int max, int limiter, char pad);
 
 /*
 **------PARSING FUNCTIONS------------------------------------------------
