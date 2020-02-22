@@ -6,7 +6,7 @@
 /*   By: jabenjam <jabenjam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 14:14:13 by jabenjam          #+#    #+#             */
-/*   Updated: 2020/02/21 21:44:45 by jabenjam         ###   ########.fr       */
+/*   Updated: 2020/02/22 06:09:27 by jabenjam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void		ft_select(va_list va_lst, t_data *f)
 	else if (f->specifier == 'X')
 		ft_uint_hex(va_arg(va_lst, unsigned int), f);
 	else if (f->specifier == '%')
-		f->count += ft_putchar('%');
+		ft_percent(f);
 }
 
 void		ft_initialize(t_data *f)
@@ -51,7 +51,7 @@ void		ft_initialize(t_data *f)
 	f->space = 0;
 	f->left = 0;
 	f->pointer = 0;
-	f->zero = 0;
+	f->zero = ' ';
 	f->count = 0;
 	f->len = 0;
 }
@@ -82,7 +82,6 @@ int			ft_process(const char *format, va_list va_lst)
 int			ft_printf(const char *format, ...)
 {
 	va_list	va_lst;
-
 	int		count;
 
 	count = 0;

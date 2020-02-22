@@ -6,7 +6,7 @@
 /*   By: jabenjam <jabenjam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 15:58:28 by jabenjam          #+#    #+#             */
-/*   Updated: 2020/02/20 15:29:48 by jabenjam         ###   ########.fr       */
+/*   Updated: 2020/02/22 05:14:10 by jabenjam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ int					ft_ilen(int nb, int base)
 	unsigned int	len;
 
 	len = 0;
+	if (!nb)
+		return (1);
 	if (nb < 0)
 		len++;
 	nb = ft_abs(nb);

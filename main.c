@@ -10,7 +10,7 @@ int            main(int ac, char **av)
 	int				x = -2554564;
 	int				X = -2554564;
 	unsigned int	u = 4294967294;
-	int				i = 0;
+	int				i = 212312;
 	//printf("\n '0.10u' : mon  return = %d\n", ft_printf("\n%0.10u", u));
 	//printf("\n '0.10u' : vrai return = %d\n", printf("\n%0.10u", u));
 //	printf("| Return : %d", ft_printf("\n%x", x));
@@ -18,6 +18,6 @@ int            main(int ac, char **av)
 //	printf("---------------------------------------------------------\n");
 //	printf("\ntrue = %d\n", ft_printf("mine = %50.30d\n", d));
 //	printf("\ntrue = %d\n", printf("true = %50.30d\n", d));
-	printf("\nmine = %d\n", ft_printf("mine = %-30p\n", &d));
-	printf("\ntrue = %d\n", printf("true = %-30p\n", &d));
+	printf("\nmine = %d\n", ft_printf("mine = %0*i\n", -7, -57));
+	printf("\ntrue = %d\n", printf("true = %0*i\n", -7, -57));
 }

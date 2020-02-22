@@ -6,7 +6,7 @@
 /*   By: jabenjam <jabenjam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 14:47:18 by jabenjam          #+#    #+#             */
-/*   Updated: 2020/02/20 15:31:42 by jabenjam         ###   ########.fr       */
+/*   Updated: 2020/02/22 06:11:29 by jabenjam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ char		*ft_toupper(char *str)
 	return (str);
 }
 
-char	*ft_strrev(char *str)
+char		*ft_strrev(char *str)
 {
 	int beg;
 	int end;

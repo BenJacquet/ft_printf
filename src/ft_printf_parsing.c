@@ -6,7 +6,7 @@
 /*   By: jabenjam <jabenjam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 16:51:47 by jabenjam          #+#    #+#             */
-/*   Updated: 2020/02/21 21:51:54 by jabenjam         ###   ########.fr       */
+/*   Updated: 2020/02/22 05:59:07 by jabenjam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,11 @@ int		ft_get_precision(const char *id, va_list va_lst, t_data *f, int i)
 		else if (id[i] == '*')
 		{
 			f->precision = va_arg(va_lst, int);
-			f->precision = (f->precision < 0 ? 0 : f->precision);
+			f->precision = (f->precision < 0 ? -1 : f->precision);
 			i++;
 		}
 		if (f->precision > 0)
-			f->zero = 0;
+			f->zero = ' ';
 	}
 	return (ft_get_specifier(id, f, i));
 }
@@ -78,6 +78,7 @@ int		ft_get_width(const char *id, va_list va_lst, t_data *f, int i)
 	if (f->width < 0)
 	{
 		f->left = 1;
+		f->zero = ' ';
 		f->width = (unsigned int)ft_abs(f->width);
 	}
 	return (ft_get_precision(id, va_lst, f, i));
@@ -103,7 +104,7 @@ int		ft_get_flag(const char *id, va_list va_lst, t_data *f, int i)
 		i++;
 	if (id[i] == '0')
 	{
-		f->zero = 1;
+		f->zero = '0';
 		i++;
 	}
 	if (ft_get_space(id[i], f))

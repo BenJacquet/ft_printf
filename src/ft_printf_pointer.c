@@ -6,13 +6,13 @@
 /*   By: jabenjam <jabenjam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 14:14:38 by jabenjam          #+#    #+#             */
-/*   Updated: 2020/02/22 02:11:35 by jabenjam         ###   ########.fr       */
+/*   Updated: 2020/02/22 06:10:03 by jabenjam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/ft_printf.h"
 
-void	ft_padding_pointer(char *str, t_data *f)
+void		ft_padding_pointer(char *str, t_data *f)
 {
 	ft_putstr_mod("0x", f, 2);
 	if (f->precision >= 0)
@@ -27,8 +27,13 @@ void		ft_pointer(unsigned long long pointer, t_data *f)
 
 	if (pointer == 0 && f->precision == 0)
 	{
-		ft_putstr_mod("0x", f, 2);
+		f->len = 2;
+		if (f->left)
+			ft_putstr_mod("0x", f, 2);
 		ft_width_pointer(f);
+		if (!f->left)
+			ft_putstr_mod("0x", f, 2);
+		return ;
 	}
 	buffer = ft_ulltoa_base(pointer);
 	f->len = ft_strlen(buffer);

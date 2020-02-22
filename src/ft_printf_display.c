@@ -6,13 +6,13 @@
 /*   By: jabenjam <jabenjam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 14:14:18 by jabenjam          #+#    #+#             */
-/*   Updated: 2020/02/22 01:49:33 by jabenjam         ###   ########.fr       */
+/*   Updated: 2020/02/22 04:35:28 by jabenjam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/ft_printf.h"
 
-int			ft_putchar(char c)
+int			ft_putchar(int c)
 {
 	write(1, &c, 1);
 	return (1);

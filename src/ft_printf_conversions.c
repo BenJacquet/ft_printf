@@ -6,16 +6,16 @@
 /*   By: jabenjam <jabenjam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 14:13:36 by jabenjam          #+#    #+#             */
-/*   Updated: 2020/02/21 23:28:50 by jabenjam         ###   ########.fr       */
+/*   Updated: 2020/02/22 06:12:01 by jabenjam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/ft_printf.h"
 
-int			ft_atoi(const char *str)
+int					ft_atoi(const char *str)
 {
-	unsigned int		result;
-	int					i;
+	unsigned int	result;
+	int				i;
 
 	result = 0;
 	i = 0;
@@ -26,7 +26,7 @@ int			ft_atoi(const char *str)
 	return (result);
 }
 
-char	*ft_itoa(int n)
+char				*ft_itoa(int n)
 {
 	char			*nbr;
 	int				i;
@@ -50,10 +50,10 @@ char	*ft_itoa(int n)
 	return (ft_strrev(nbr));
 }
 
-char		*ft_uitoa(unsigned int nb)
+char				*ft_uitoa(unsigned int nb)
 {
-	char	*buffer;
-	int		i;
+	char			*buffer;
+	int				i;
 
 	i = 0;
 	if (!(buffer = malloc(sizeof(char) * (ft_uilen(nb, 10) + 1))))
@@ -68,11 +68,11 @@ char		*ft_uitoa(unsigned int nb)
 	return (ft_strrev(buffer));
 }
 
-char		*ft_uitoa_base(unsigned int nb)
+char				*ft_uitoa_base(unsigned int nb)
 {
-	char	*hex;
-	char	*buffer;
-	int		i;
+	char			*hex;
+	char			*buffer;
+	int				i;
 
 	i = 0;
 	hex = "0123456789abcdef";
@@ -88,11 +88,11 @@ char		*ft_uitoa_base(unsigned int nb)
 	return (ft_strrev(buffer));
 }
 
-char		*ft_ulltoa_base(unsigned long long nb)
+char				*ft_ulltoa_base(unsigned long long nb)
 {
-	char	*hex;
-	char	*buffer;
-	int		i;
+	char			*hex;
+	char			*buffer;
+	int				i;
 
 	i = 0;
 	hex = "0123456789abcdef";
