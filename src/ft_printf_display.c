@@ -6,7 +6,7 @@
 /*   By: jabenjam <jabenjam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 14:14:18 by jabenjam          #+#    #+#             */
-/*   Updated: 2020/02/20 15:06:17 by jabenjam         ###   ########.fr       */
+/*   Updated: 2020/02/22 01:49:33 by jabenjam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ void		ft_putstr_mod(char *str, t_data *f, int mode)
 {
 	int		limit;
 
-	if (mode == 2)
-		f->len = 2;
 	limit = (mode == 1 ? f->precision : f->len);
+	if (mode == 2)
+		limit = 2;
 	if (str)
 	{
 		write(1, str, limit);

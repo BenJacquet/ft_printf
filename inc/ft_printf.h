@@ -6,7 +6,7 @@
 /*   By: jabenjam <jabenjam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 12:45:30 by jabenjam          #+#    #+#             */
-/*   Updated: 2020/02/20 17:52:27 by jabenjam         ###   ########.fr       */
+/*   Updated: 2020/02/22 01:18:57 by jabenjam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,13 @@ void			ft_padding_str(char *str, t_data *f);
 void			ft_pointer(unsigned long long pointer, t_data *f);
 void			ft_padding_pointer(char *str, t_data *f);
 void			ft_int(int nb, t_data *f);
-void			ft_int_next(char *buffer, t_data *f, int sign);
-void			ft_padding_int(char *buffer, t_data *f, int sign);
+void			ft_int_next(char *buffer, t_data *f, int sign, int nb);
+void			ft_padding_int(char *buffer, t_data *f, int sign, int nb);
 void			ft_uint_hex(unsigned int nb, t_data *f);
 void			ft_uint_hex_next(char *buffer, t_data *f);
 void			ft_padding_uint_hex(char *buffer, t_data *f);
-void			ft_width(t_data *f, int max, int limiter, char pad);
+void			ft_width(t_data *f, int mode);
+void			ft_width_pointer(t_data *f ,int max, int limiter, char pad);
 
 /*
 **------PARSING FUNCTIONS------------------------------------------------
@@ -66,7 +67,6 @@ int				ft_get_specifier(const char *id, t_data *f, int i);
 int				ft_get_precision(const char *id, va_list va_lst, t_data *f, int i);
 int				ft_get_width(const char *id, va_list va_lst, t_data *f, int i);
 int				ft_get_flag(const char *id, va_list va_lst, t_data *f, int i);
-int				ft_get_space(char c, t_data *f);
 
 /*
 **------CONVERSION FUNCTIONS-----------------------------------------------
