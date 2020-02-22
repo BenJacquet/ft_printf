@@ -6,22 +6,11 @@
 /*   By: jabenjam <jabenjam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 14:14:13 by jabenjam          #+#    #+#             */
-/*   Updated: 2020/02/22 06:09:27 by jabenjam         ###   ########.fr       */
+/*   Updated: 2020/02/22 06:24:46 by jabenjam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./inc/ft_printf.h"
-
-#include "./src/ft_printf_char_string.c"
-#include "./src/ft_printf_conversions.c"
-#include "./src/ft_printf_display.c"
-#include "./src/ft_printf_int.c"
-#include "./src/ft_printf_length.c"
-#include "./src/ft_printf_parsing.c"
-#include "./src/ft_printf_pointer.c"
-#include "./src/ft_printf_uint_hex.c"
-#include "./src/ft_printf_utils.c"
-#include "./src/ft_printf_width.c"
 
 void		ft_select(va_list va_lst, t_data *f)
 {
