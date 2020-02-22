@@ -6,24 +6,18 @@
 /*   By: jabenjam <jabenjam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 14:15:07 by jabenjam          #+#    #+#             */
-/*   Updated: 2020/02/22 01:41:50 by jabenjam         ###   ########.fr       */
+/*   Updated: 2020/02/22 02:22:40 by jabenjam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/ft_printf.h"
 
-/*
-** Mode = 0 : On utilise la len
-** Mode = 1 : On utilise la precision
-** CP : Si "%p" = on compte deux char de moins pour le "0x"
-*/
 
-void	ft_width(t_data *f, int mode)
+void	ft_width_pointer(t_data *f)
 {
 	int	limit;
 
-	limit = (mode == 1 ? f->precision : f->len);
-	limit += (f->pointer == 1 ? 2 : 0);
+	limit = f->len;
 	while (f->width - limit > 0)
 	{
 		if (f->zero)
@@ -35,12 +29,23 @@ void	ft_width(t_data *f, int mode)
 	}
 }
 
-void	ft_width_pointer(t_data *f ,int max, int limiter, char pad)
+/*
+** Mode = 0 : On utilise la len
+** Mode = 1 : On utilise la precision
+*/
+
+void	ft_width(t_data *f, int mode)
 {
-	while (max - limiter > 0)
+	int	limit;
+
+	limit = (mode == 1 ? f->precision : f->len);
+	while (f->width - limit > 0)
 	{
-		ft_putchar(pad);
-		max--;
+		if (f->zero)
+			ft_putchar('0');
+		else
+			ft_putchar(' ');
+		f->width--;
 		f->count++;
 	}
 }

@@ -16,6 +16,8 @@ int            main(int ac, char **av)
 //	printf("| Return : %d", ft_printf("\n%x", x));
 //  ft_printf("\n%100s", s);
 //	printf("---------------------------------------------------------\n");
-	printf("\ntrue = %d\n", printf("true = %-20p djghkdjhfk% 15d, %-50.20X\n", &d, x, X));
-	printf("\ntrue = %d\n", printf("true = %-20p djghkdjhfk% 15d, %-50.20X\n", &d, x, X));
+//	printf("\ntrue = %d\n", ft_printf("mine = %50.30d\n", d));
+//	printf("\ntrue = %d\n", printf("true = %50.30d\n", d));
+	printf("\nmine = %d\n", ft_printf("mine = %-30p\n", &d));
+	printf("\ntrue = %d\n", printf("true = %-30p\n", &d));
 }

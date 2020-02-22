@@ -6,7 +6,7 @@
 /*   By: jabenjam <jabenjam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 12:45:30 by jabenjam          #+#    #+#             */
-/*   Updated: 2020/02/22 01:18:57 by jabenjam         ###   ########.fr       */
+/*   Updated: 2020/02/22 02:11:05 by jabenjam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void			ft_uint_hex(unsigned int nb, t_data *f);
 void			ft_uint_hex_next(char *buffer, t_data *f);
 void			ft_padding_uint_hex(char *buffer, t_data *f);
 void			ft_width(t_data *f, int mode);
-void			ft_width_pointer(t_data *f ,int max, int limiter, char pad);
+void			ft_width_pointer(t_data *f);
 
 /*
 **------PARSING FUNCTIONS------------------------------------------------

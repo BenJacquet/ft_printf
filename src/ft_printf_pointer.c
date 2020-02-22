@@ -6,7 +6,7 @@
 /*   By: jabenjam <jabenjam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 14:14:38 by jabenjam          #+#    #+#             */
-/*   Updated: 2020/02/22 01:45:42 by jabenjam         ###   ########.fr       */
+/*   Updated: 2020/02/22 02:11:35 by jabenjam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void		ft_pointer(unsigned long long pointer, t_data *f)
 	if (pointer == 0 && f->precision == 0)
 	{
 		ft_putstr_mod("0x", f, 2);
-		ft_width(f, 0);
+		ft_width_pointer(f);
 	}
 	buffer = ft_ulltoa_base(pointer);
 	f->len = ft_strlen(buffer);
@@ -37,7 +37,7 @@ void		ft_pointer(unsigned long long pointer, t_data *f)
 	if (f->left)
 		ft_padding_pointer(buffer, f);
 	f->len += 2;
-	ft_width(f, 0);
+	ft_width_pointer(f);
 	if (!f->left)
 		ft_padding_pointer(buffer, f);
 	free(buffer);
