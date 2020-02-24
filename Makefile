@@ -10,6 +10,7 @@ SRC = ft_printf.c\
 	src/ft_printf_utils.c\
 	src/ft_printf_length.c\
 	src/ft_printf_conversions.c\
+	src/ft_printf_detectors.c\
 	src/ft_printf_display.c\
 
 OBJ = $(SRC:.c=.o)

@@ -18,6 +18,6 @@ int            main(int ac, char **av)
 //	printf("---------------------------------------------------------\n");
 //	printf("\ntrue = %d\n", ft_printf("mine = %50.30d\n", d));
 //	printf("\ntrue = %d\n", printf("true = %50.30d\n", d));
-	printf("\nmine = %d\n", ft_printf("I8AnzU%0dncj%X%X%s", 0, -14044880, -2147483647, "uxDhZ1Ak6SvkHpHXfNe92YRh9Zv"));
-	printf("\ntrue = %d\n", printf("I8AnzU%0dncj%X%X%s", 0, -14044880, -2147483647, "uxDhZ1Ak6SvkHpHXfNe92YRh9Zv"));
+	ft_printf("%-.5d\n", d);
+//	printf("\ntrue = %d\n", printf("true = %-.5d\n", d));
 }

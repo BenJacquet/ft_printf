@@ -6,7 +6,7 @@
 /*   By: jabenjam <jabenjam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 14:14:45 by jabenjam          #+#    #+#             */
-/*   Updated: 2020/02/22 05:48:24 by jabenjam         ###   ########.fr       */
+/*   Updated: 2020/02/24 17:16:21 by jabenjam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,3 @@ void	ft_uint_hex(unsigned int nb, t_data *f)
 	ft_uint_next(buffer, f);
 	free(buffer);
 }
-
-/*
-** (ligne 30) : si ça ne marche pas changer f->precision en size_t
-** (ligne 51) : tester sans addition
-*/
