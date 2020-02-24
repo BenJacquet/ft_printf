@@ -6,7 +6,7 @@
 /*   By: jabenjam <jabenjam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 14:14:45 by jabenjam          #+#    #+#             */
-/*   Updated: 2020/02/24 17:16:21 by jabenjam         ###   ########.fr       */
+/*   Updated: 2020/02/24 17:24:04 by jabenjam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ void	ft_uint_hex(unsigned int nb, t_data *f)
 {
 	char	*buffer;
 
-	nb += (4294967295 + 1);
 	if (!f->precision && !nb)
 		return (ft_width(f, f->width, 0, ' '));
 	if (f->specifier == 'u')
