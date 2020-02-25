@@ -6,7 +6,7 @@
 /*   By: jabenjam <jabenjam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 15:58:28 by jabenjam          #+#    #+#             */
-/*   Updated: 2020/02/22 05:14:10 by jabenjam         ###   ########.fr       */
+/*   Updated: 2020/02/25 13:00:57 by jabenjam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ int					ft_ilen(int nb, int base)
 		return (1);
 	if (nb < 0)
 		len++;
+	if (nb == -2147483648 || nb == 2147483647)
+		return (len += 10 + 1);
 	nb = ft_abs(nb);
 	while (nb > base)
 	{
@@ -48,6 +50,8 @@ int					ft_uilen(unsigned int nb, unsigned int base)
 
 	len = 0;
 	nb = ft_abs(nb);
+	if (nb == 4294967295)
+		return (11);
 	while (nb > base)
 	{
 		nb /= base;
@@ -61,6 +65,8 @@ int					ft_ulllen(unsigned long long nb, unsigned int base)
 	unsigned int	len;
 
 	len = 0;
+	if (nb >= 9223372036854775807)
+		return (21);
 	while (nb > base)
 	{
 		nb /= base;

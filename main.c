@@ -18,6 +18,5 @@ int            main(int ac, char **av)
 //	printf("---------------------------------------------------------\n");
 //	printf("\ntrue = %d\n", ft_printf("mine = %50.30d\n", d));
 //	printf("\ntrue = %d\n", printf("true = %50.30d\n", d));
-	ft_printf("%-.5d\n", d);
-//	printf("\ntrue = %d\n", printf("true = %-.5d\n", d));
+	ft_printf("mine = %-.5d\n",d);
 }

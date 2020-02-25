@@ -19,6 +19,8 @@ INC = -I /inc/
 
 CC = gcc
 
+DBG= -fsanitize=address
+
 CFLAGS = -c -Wall -Werror -Wextra
 
 
