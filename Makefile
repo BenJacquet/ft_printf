@@ -23,7 +23,6 @@ DBG= -fsanitize=address
 
 CFLAGS = -c -Wall -Werror -Wextra
 
-
 $(NAME) : $(OBJ)
 	ar rc $(NAME) $(OBJ)
 	ranlib $(NAME)
@@ -45,4 +44,4 @@ debug :
 	cp a.out ~/WIP/
 	cp -rf a.out.dSYM ~/WIP/
 
-.PHONY : all clean fclean re
+.PHONY : all clean fclean re debug
