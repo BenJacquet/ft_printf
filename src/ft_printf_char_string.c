@@ -6,7 +6,7 @@
 /*   By: jabenjam <jabenjam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 14:14:09 by jabenjam          #+#    #+#             */
-/*   Updated: 2020/03/02 13:57:13 by jabenjam         ###   ########.fr       */
+/*   Updated: 2020/03/02 19:40:40 by jabenjam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,7 @@ void	ft_percent(t_data *f)
 {
 	if (f->left)
 		f->count += ft_putchar('%');
-	if (f->zero == '0')
-		ft_width(f, f->width, 1, '0');
-	else
-		ft_width(f, f->width, 1, ' ');
+	ft_width(f, f->width, 1, f->zero);
 	if (!f->left)
 		f->count += ft_putchar('%');
 }

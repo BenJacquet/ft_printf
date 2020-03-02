@@ -6,7 +6,7 @@
 /*   By: jabenjam <jabenjam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 12:45:30 by jabenjam          #+#    #+#             */
-/*   Updated: 2020/03/02 13:57:11 by jabenjam         ###   ########.fr       */
+/*   Updated: 2020/03/02 19:47:46 by jabenjam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,10 +75,10 @@ int				ft_get_flag(const char *id, va_list va_lst, t_data *f, int i);
 */
 
 int				ft_atoi(const char *str);
-char			*ft_itoa(int nb);
-char			*ft_uitoa(unsigned int nb);
-char			*ft_uitoa_base(unsigned int nb);
-char			*ft_ulltoa_base(unsigned long long nb);
+void			ft_itoa(int nb, char *buffer);
+void			ft_uitoa(unsigned int nb, char *buffer);
+void			ft_uitoa_base(unsigned int nb, char *buffer);
+void			ft_ulltoa_base(unsigned long long nb, char *buffer);
 int				ft_abs(int n);
 char			*ft_toupper(char *str);
 char			*ft_strrev(char *str);
@@ -88,9 +88,6 @@ char			*ft_strrev(char *str);
 */
 
 int				ft_strlen(const char *str);
-int				ft_ilen(int nb, int base);
-int				ft_uilen(unsigned int nb, unsigned int base);
-int				ft_ulllen(unsigned long long nb, unsigned int base);
 
 /*
 **------DETECTOR FUNCTIONS---------------------------------------------------

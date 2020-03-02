@@ -6,7 +6,7 @@
 /*   By: jabenjam <jabenjam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 16:51:47 by jabenjam          #+#    #+#             */
-/*   Updated: 2020/03/02 13:57:19 by jabenjam         ###   ########.fr       */
+/*   Updated: 2020/03/02 17:20:11 by jabenjam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ int		ft_get_specifier(const char *id, t_data *f, int i)
 		f->specifier = id[i];
 		i++;
 	}
+	if (f->precision > 0 && f->specifier != '%')
+		f->zero = ' ';
 	return (i);
 }
 
@@ -46,8 +48,7 @@ int		ft_get_precision(const char *id, va_list va_lst, t_data *f, int i)
 			f->precision = (f->precision < 0 ? -1 : f->precision);
 			i++;
 		}
-		if (f->precision > 0)
-			f->zero = ' ';
+
 	}
 	return (ft_get_specifier(id, f, i));
 }
@@ -90,21 +91,21 @@ int		ft_get_space(char c, t_data *f)
 
 int		ft_get_flag(const char *id, va_list va_lst, t_data *f, int i)
 {
-	if (ft_get_space(id[i], f))
+	while (ft_get_space(id[i], f))
 		i++;
-	if (id[i] == '0')
+	while (id[i] == '0')
 	{
 		f->zero = '0';
 		i++;
 	}
-	if (ft_get_space(id[i], f))
+	while (ft_get_space(id[i], f))
 		i++;
-	if (id[i] == '-')
+	while (id[i] == '-')
 	{
 		f->left = 1;
 		i++;
 	}
-	if (ft_get_space(id[i], f))
+	while (ft_get_space(id[i], f))
 		i++;
 	return (ft_get_width(id, va_lst, f, i));
 }

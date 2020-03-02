@@ -6,7 +6,7 @@
 /*   By: jabenjam <jabenjam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 14:14:45 by jabenjam          #+#    #+#             */
-/*   Updated: 2020/03/02 13:57:21 by jabenjam         ###   ########.fr       */
+/*   Updated: 2020/03/02 19:43:40 by jabenjam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,16 +42,16 @@ void	ft_uint_next(char *buffer, t_data *f)
 
 void	ft_uint_hex(unsigned int nb, t_data *f)
 {
-	char	*buffer;
+	char	buffer[11];
 
 	if (!f->precision && !nb)
 		return (ft_width(f, f->width, 0, ' '));
 	if (f->specifier == 'u')
-		buffer = ft_uitoa(nb);
+		ft_uitoa(nb, buffer);
 	else
-		buffer = ft_uitoa_base((unsigned int)nb);
-	buffer = (f->specifier == 'X' ? ft_toupper(buffer) : buffer);
+		ft_uitoa_base((unsigned int)nb, buffer);
+	if (f->specifier == 'X')
+		ft_toupper(buffer);
 	f->len = ft_strlen(buffer);
 	ft_uint_next(buffer, f);
-	free(buffer);
 }

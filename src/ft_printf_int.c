@@ -6,7 +6,7 @@
 /*   By: jabenjam <jabenjam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 14:14:27 by jabenjam          #+#    #+#             */
-/*   Updated: 2020/03/02 13:57:17 by jabenjam         ###   ########.fr       */
+/*   Updated: 2020/03/02 19:31:07 by jabenjam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void		ft_int_next(char *buffer, t_data *f, int sign)
 
 void		ft_int(int nb, t_data *f)
 {
-	char	*buffer;
+	char	buffer[12];
 	int		sign;
 
 	sign = (nb < 0 ? 1 : 0);
@@ -64,10 +64,10 @@ void		ft_int(int nb, t_data *f)
 		}
 		nb = ft_abs(nb);
 		f->zero = '0';
-		f->width--;
+		if (nb >= 0)
+			f->width--;
 	}
-	buffer = ft_itoa(nb);
+	ft_itoa(nb, buffer);
 	f->len = ft_strlen(buffer);
 	ft_int_next(buffer, f, sign);
-	free(buffer);
 }
