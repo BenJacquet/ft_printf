@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: jabenjam <jabenjam@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2020/03/02 13:55:10 by jabenjam          #+#    #+#              #
+#    Updated: 2020/03/02 14:11:48 by jabenjam         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME = libftprintf.a
 
 SRC = ft_printf.c\
@@ -44,4 +56,6 @@ debug :
 	cp a.out ~/WIP/
 	cp -rf a.out.dSYM ~/WIP/
 
-.PHONY : all clean fclean re debug
+bonus : all
+
+.PHONY : all clean fclean re bonus debug

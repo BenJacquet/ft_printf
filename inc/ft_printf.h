@@ -6,7 +6,7 @@
 /*   By: jabenjam <jabenjam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 12:45:30 by jabenjam          #+#    #+#             */
-/*   Updated: 2020/02/24 17:16:02 by jabenjam         ###   ########.fr       */
+/*   Updated: 2020/03/02 13:57:11 by jabenjam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include <stdlib.h>
 # include <stdint.h>
 # include <stdarg.h>
-# include <stdio.h>
 
 typedef struct	s_struct
 {
