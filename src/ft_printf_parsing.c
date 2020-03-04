@@ -6,7 +6,7 @@
 /*   By: jabenjam <jabenjam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 16:51:47 by jabenjam          #+#    #+#             */
-/*   Updated: 2020/03/02 17:20:11 by jabenjam         ###   ########.fr       */
+/*   Updated: 2020/03/04 21:02:08 by jabenjam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ int		ft_get_precision(const char *id, va_list va_lst, t_data *f, int i)
 			f->precision = (f->precision < 0 ? -1 : f->precision);
 			i++;
 		}
-
 	}
 	return (ft_get_specifier(id, f, i));
 }
