@@ -6,7 +6,7 @@
 /*   By: jabenjam <jabenjam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 14:47:18 by jabenjam          #+#    #+#             */
-/*   Updated: 2020/03/11 12:57:13 by jabenjam         ###   ########.fr       */
+/*   Updated: 2020/03/11 13:12:52 by jabenjam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@ int			ft_abs(int n)
 	return (n < 0 ? -n : n);
 }
 
-int					ft_strlen(const char *str)
+int			ft_strlen(const char *str)
 {
-	int				len;
+	int		len;
 
 	len = 0;
 	if (!str)
