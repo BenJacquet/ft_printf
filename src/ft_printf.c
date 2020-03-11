@@ -6,11 +6,11 @@
 /*   By: jabenjam <jabenjam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 14:14:13 by jabenjam          #+#    #+#             */
-/*   Updated: 2020/03/02 13:57:24 by jabenjam         ###   ########.fr       */
+/*   Updated: 2020/03/11 12:59:12 by jabenjam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./inc/ft_printf.h"
+#include "../inc/ft_printf.h"
 
 void		ft_select(va_list va_lst, t_data *f)
 {

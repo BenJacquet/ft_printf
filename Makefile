@@ -6,13 +6,13 @@
 #    By: jabenjam <jabenjam@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/02 13:55:10 by jabenjam          #+#    #+#              #
-#    Updated: 2020/03/02 14:11:48 by jabenjam         ###   ########.fr        #
+#    Updated: 2020/03/11 12:59:28 by jabenjam         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
 
-SRC = ft_printf.c\
+SRC = src/ft_printf.c\
 	src/ft_printf_parsing.c\
 	src/ft_printf_char_string.c\
 	src/ft_printf_pointer.c\
@@ -20,7 +20,6 @@ SRC = ft_printf.c\
 	src/ft_printf_uint_hex.c\
 	src/ft_printf_width.c\
 	src/ft_printf_utils.c\
-	src/ft_printf_length.c\
 	src/ft_printf_conversions.c\
 	src/ft_printf_detectors.c\
 	src/ft_printf_display.c\
@@ -50,7 +49,7 @@ fclean : clean
 re : fclean all
 
 debug :
-	gcc -g ft_printf.c main.c
+	gcc -g src/ft_printf.c main.c
 	rm -rf ~/WIP/a.out
 	rm -rf ~/WIP/a.out.dSYM/
 	cp a.out ~/WIP/
